@@ -1,0 +1,214 @@
+import type { Metadata } from "next";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Reveal from "@/components/motion/Reveal";
+import SmartImage from "@/components/SmartImage";
+import { founders, beliefs, WHATSAPP_LINK } from "@/lib/content";
+import { ArrowIcon } from "@/components/Icons";
+
+export const metadata: Metadata = {
+  title: "About — AfyaTrust",
+  description:
+    "Why we started AfyaTrust: health protection for the riders, traders and families who keep Tanzania moving.",
+};
+
+export default function AboutPage() {
+  return (
+    <>
+      <Navbar />
+      <main className="bg-white">
+        {/* 1 — Statement hero */}
+        <section className="container-page pb-20 pt-36 sm:pt-44">
+          <Reveal>
+            <span className="eyebrow">About AfyaTrust</span>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h1 className="mt-6 max-w-4xl font-display text-[clamp(36px,6vw,68px)] font-700 leading-[1.02] tracking-tight text-charcoal">
+              Health is the one thing that shouldn&apos;t wait for payday.
+            </h1>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mt-7 max-w-2xl text-[19px] leading-relaxed text-charcoal-muted">
+              We&apos;re building health protection for the people who keep Tanzania
+              moving — riders, traders, vendors and families. Not insurance. Access.
+            </p>
+          </Reveal>
+        </section>
+
+        {/* 2 — Inspiration / co-founder note (founders portrait) */}
+        <section className="section pt-4">
+          <div className="container-page grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <Reveal>
+              <figure>
+                <SmartImage
+                  src="/media/founders.jpeg"
+                  alt="AfyaTrust co-founders"
+                  aspect="3 / 4"
+                  priority
+                  className="rounded-xl2 border border-line shadow-soft"
+                  position="center 20%"
+                />
+                <figcaption className="mt-4 text-[13px] text-charcoal-faint">
+                  {founders.map((f) => f.name).join(" & ")} — co-founders, AfyaTrust.
+                </figcaption>
+              </figure>
+            </Reveal>
+
+            <div>
+              <Reveal>
+                <span className="eyebrow">Our story</span>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="mt-4 font-display text-[clamp(28px,4vw,42px)] font-700 leading-tight tracking-tight text-charcoal">
+                  Why we started
+                </h2>
+              </Reveal>
+
+              <div className="mt-6 space-y-5 text-[17px] leading-relaxed text-charcoal-muted">
+                <Reveal delay={0.1}>
+                  <p>
+                    We grew up around people who work with their hands and their
+                    hours. A rider who pushes through a fever because a clinic visit
+                    costs a day&apos;s pay. A mama who delays her own care to cover
+                    school fees. When the money isn&apos;t there, treatment waits —
+                    and small problems become emergencies.
+                  </p>
+                </Reveal>
+                <Reveal delay={0.15}>
+                  <p>
+                    AfyaTrust started with one belief: one sickness should never undo
+                    a lifetime of work. So we built something simple — a small monthly
+                    membership that lets you walk into a partner clinic and be treated,
+                    without cash at the counter.
+                  </p>
+                </Reveal>
+              </div>
+
+              {/* Co-founder note */}
+              <Reveal delay={0.2}>
+                <blockquote className="mt-8 border-l-2 border-teal pl-6">
+                  <p className="font-display text-[20px] font-600 leading-snug text-charcoal">
+                    &ldquo;We&apos;re not here to sell policies. We&apos;re here so
+                    that the next fever doesn&apos;t become the thing that sets a
+                    family back a year.&rdquo;
+                  </p>
+                  <footer className="mt-4 text-[14px] text-charcoal-muted">
+                    <span className="font-600 text-charcoal">{founders[0].name}</span>
+                    {" · "}
+                    {founders[0].role}
+                  </footer>
+                </blockquote>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* 3 — The team / co-founders */}
+        <section className="section bg-sage-mist pt-0 sm:pt-0">
+          <div className="container-page py-20 sm:py-24">
+            <Reveal>
+              <span className="eyebrow">The team</span>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="mt-4 max-w-2xl font-display text-[clamp(26px,3.6vw,38px)] font-700 leading-tight tracking-tight text-charcoal">
+                A small team, close to the ground.
+              </h2>
+            </Reveal>
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:max-w-2xl">
+              {founders.map((f, i) => (
+                <Reveal key={f.name} delay={i * 0.08}>
+                  <div className="rounded-xl2 border border-line bg-white p-7">
+                    <span className="grid h-12 w-12 place-items-center rounded-full bg-teal text-[18px] font-700 text-white">
+                      {f.name.charAt(0)}
+                    </span>
+                    <h3 className="mt-5 font-display text-[19px] font-700 text-charcoal">
+                      {f.name}
+                    </h3>
+                    <p className="mt-1 text-[14px] text-charcoal-muted">{f.role}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 4 — Team in the field (market photo) */}
+        <section className="section">
+          <div className="container-page">
+            <Reveal>
+              <span className="eyebrow">In the field</span>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="mt-4 max-w-3xl font-display text-[clamp(26px,3.6vw,40px)] font-700 leading-tight tracking-tight text-charcoal">
+                Every plan we build starts here — listening first.
+              </h2>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <figure className="relative mt-10 overflow-hidden rounded-xl2 border border-line shadow-soft">
+                <SmartImage
+                  src="/media/field.jpeg"
+                  alt="AfyaTrust team talking with a trader at Kariakoo market"
+                  aspect="3 / 2"
+                  position="center 35%"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent p-6 sm:p-8">
+                  <p className="max-w-2xl text-[15px] font-500 leading-relaxed text-white sm:text-[17px]">
+                    In the market with the people we serve. We sit with traders and
+                    riders to learn what protection should really cost — before we
+                    ever design a plan.
+                  </p>
+                </div>
+              </figure>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* 5 — What we believe */}
+        <section className="section bg-sage-mist">
+          <div className="container-page">
+            <Reveal>
+              <span className="eyebrow">What we believe</span>
+            </Reveal>
+            <div className="mt-12 grid gap-10 md:grid-cols-3">
+              {beliefs.map((b, i) => (
+                <Reveal key={b.title} delay={i * 0.08}>
+                  <div>
+                    <span className="font-display text-[15px] font-700 text-sage">0{i + 1}</span>
+                    <h3 className="mt-3 font-display text-[22px] font-700 leading-snug text-charcoal">
+                      {b.title}
+                    </h3>
+                    <p className="mt-3 text-[16px] leading-relaxed text-charcoal-muted">{b.desc}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 6 — CTA */}
+        <section className="section">
+          <div className="container-page">
+            <Reveal>
+              <div className="rounded-xl2 bg-teal px-8 py-16 text-center sm:px-12 sm:py-20">
+                <h2 className="font-display text-[clamp(28px,4vw,44px)] font-700 leading-tight tracking-tight text-white">
+                  Join the people protecting their work.
+                </h2>
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener"
+                  className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-[17px] font-700 text-teal shadow-soft transition-transform duration-200 hover:-translate-y-0.5"
+                >
+                  Join AfyaTrust
+                  <ArrowIcon width={18} height={18} />
+                </a>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}

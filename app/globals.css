@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: "Inter", system-ui, sans-serif;
+  --font-manrope: "Manrope", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-charcoal font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: #006D77;
+    color: #fff;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-content px-6 sm:px-8;
+  }
+
+  /* Buttons — only two styles, used everywhere */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3
+           text-[15px] font-semibold transition-all duration-200 ease-out
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-teal/40 focus-visible:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-teal text-white shadow-soft hover:bg-teal-deep hover:-translate-y-0.5;
+  }
+  .btn-secondary {
+    @apply btn border border-line bg-white text-charcoal hover:border-teal/40 hover:text-teal;
+  }
+  .btn-whatsapp {
+    @apply btn bg-teal text-white hover:bg-teal-deep hover:-translate-y-0.5 shadow-soft;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[13px] font-semibold uppercase
+           tracking-[0.14em] text-teal;
+  }
+
+  .section {
+    @apply py-24 sm:py-28;
+  }
+}
