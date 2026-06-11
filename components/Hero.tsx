@@ -138,9 +138,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.16em] text-sage"
+            className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-sage sm:text-[13px] sm:tracking-[0.16em]"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+            <span className="h-1 w-1 rounded-full bg-gold sm:h-1.5 sm:w-1.5" />
             {TAGLINE_SUB}
           </motion.span>
 
@@ -175,20 +175,20 @@ export default function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.7 }}
-            className="mt-9 flex flex-col gap-3 sm:flex-row"
+            className="mt-8 flex flex-row flex-wrap items-center gap-2.5 sm:mt-9 sm:gap-3"
           >
             <a
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener"
-              className="btn inline-flex bg-white text-teal shadow-soft hover:-translate-y-0.5"
+              className="btn inline-flex bg-white px-4 py-2 text-[13px] text-teal shadow-soft hover:-translate-y-0.5 sm:px-6 sm:py-3 sm:text-[15px]"
             >
               Join AfyaTrust
-              <ArrowIcon width={18} height={18} />
+              <ArrowIcon className="h-3.5 w-3.5 sm:h-[18px] sm:w-[18px]" />
             </a>
             <a
               href="#how"
-              className="btn border border-white/30 bg-white/5 text-white backdrop-blur-sm hover:bg-white/10"
+              className="btn border border-white/30 bg-white/5 px-4 py-2 text-[13px] text-white backdrop-blur-sm hover:bg-white/10 sm:px-6 sm:py-3 sm:text-[15px]"
             >
               See how it works
             </a>

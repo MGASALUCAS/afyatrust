@@ -1,29 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { nav, WHATSAPP_LINK } from "@/lib/content";
 
 function Logo({ light }: { light: boolean }) {
+  // White wordmark over the dark hero glass; teal wordmark on the white header.
   return (
-    <a href="#top" className="flex items-center gap-2.5">
-      <span className="grid h-9 w-9 place-items-center rounded-xl bg-teal text-white">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
-          <path
-            d="M12 20s-7-4.2-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.8-7 9-7 9Z"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </span>
-      <span
-        className={`font-display text-[19px] font-700 tracking-tight transition-colors ${
-          light ? "text-white" : "text-charcoal"
-        }`}
-      >
-        Afya<span className={light ? "text-sage" : "text-teal"}>Trust</span>
-      </span>
+    <a href="#top" className="flex items-center">
+      <Image
+        src={light ? "/logo-white.png" : "/logo-teal.png"}
+        alt="AfyaTrust — Health without financial shock"
+        width={702}
+        height={192}
+        priority
+        className="h-8 w-auto sm:h-9"
+      />
     </a>
   );
 }
