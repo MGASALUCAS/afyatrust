@@ -76,9 +76,14 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* Layer 1 — the two alternating video slides (blurred backdrop + sharp HD) */}
+      {/* Layer 1 — the two alternating video slides (blurred backdrop + sharp HD).
+          Mobile: full-bleed background. Desktop: a framed media panel on the right —
+          inset from the edges with a thin border, like a card sitting on the hero. */}
       {!failed && (
-        <motion.div style={{ scale: reduce ? 1 : scale }} className="absolute inset-0">
+        <motion.div
+          style={{ scale: reduce ? 1 : scale }}
+          className="absolute inset-0 lg:left-auto lg:right-6 lg:top-[104px] lg:bottom-8 lg:w-[38vw] lg:overflow-hidden lg:rounded-[28px] lg:border lg:border-white/20 lg:shadow-[0_30px_80px_-24px_rgba(0,0,0,0.55)]"
+        >
           {SOURCES.map((src, i) => (
             <div
               key={src}
@@ -104,7 +109,7 @@ export default function Hero() {
                 ref={(el) => {
                   sharpRefs.current[i] = el;
                 }}
-                className="absolute inset-0 h-full w-full object-contain object-center lg:object-right"
+                className="absolute inset-0 h-full w-full object-contain object-center"
                 muted
                 playsInline
                 preload="auto"
@@ -120,7 +125,7 @@ export default function Hero() {
 
       {/* Layer 2 — legibility scrims. Mobile: full coverage. Desktop: left-only, so the
           video on the right stays fully visible from the very top. */}
-      <div className="absolute inset-0 bg-gradient-to-t from-teal-dark/90 via-teal-dark/35 to-teal-dark/55 lg:from-teal-dark/70 lg:via-transparent lg:via-30% lg:to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-teal-dark/90 via-teal-dark/35 to-teal-dark/55 lg:hidden" />
       <div className="absolute inset-0 bg-gradient-to-r from-teal-dark/85 via-teal-dark/25 to-transparent lg:from-teal-dark/90 lg:via-teal-dark/45 lg:via-38% lg:to-transparent lg:to-62%" />
 
       {/* Content */}
@@ -193,7 +198,7 @@ export default function Hero() {
 
       {/* Slide indicator — shows which film is playing, and lets you switch */}
       {!failed && (
-        <div className="absolute bottom-8 right-6 z-10 flex gap-2 sm:right-8">
+        <div className="absolute bottom-8 right-6 z-10 flex gap-2 sm:right-8 lg:bottom-14 lg:right-12">
           {SOURCES.map((src, i) => (
             <button
               key={src}
