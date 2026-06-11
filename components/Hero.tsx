@@ -139,17 +139,20 @@ export default function Hero() {
             {TAGLINE_SUB}
           </motion.span>
 
-          <h1 className="mt-6 max-w-4xl font-display text-[clamp(40px,8vw,84px)] font-700 leading-[0.98] tracking-tight text-white [text-shadow:0_2px_30px_rgba(0,52,58,0.45)]">
+          <h1 className="mt-6 max-w-4xl font-display text-[clamp(32px,6vw,64px)] font-700 leading-[1.04] tracking-tight text-white [text-shadow:0_2px_30px_rgba(0,52,58,0.45)]">
             {words.map((w, i) => (
-              <motion.span
-                key={i}
-                className="inline-block"
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 + i * 0.09 }}
-              >
-                {w}&nbsp;
-              </motion.span>
+              <span key={i} className="contents">
+                <motion.span
+                  className="inline-block"
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 + i * 0.09 }}
+                >
+                  {w}&nbsp;
+                </motion.span>
+                {/* Break after "Without" — the tagline always reads as two lines */}
+                {i === 1 && <br />}
+              </span>
             ))}
           </h1>
 
