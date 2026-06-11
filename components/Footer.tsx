@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { WHATSAPP_NUMBER, WHATSAPP_LINK, TAGLINE, TAGLINE_SUB } from "@/lib/content";
+import { WhatsAppIcon } from "./Icons";
 
 type FooterLink = { label: string; href: string };
 type FooterColumn = { title: string; links: FooterLink[] };
@@ -45,9 +46,17 @@ export default function Footer() {
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener"
-              className="mt-5 inline-block text-[15px] font-600 text-sage hover:text-white"
+              className="mt-6 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/10 py-2.5 pl-3 pr-5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/15"
             >
-              WhatsApp {WHATSAPP_NUMBER}
+              <span className="grid h-9 w-9 place-items-center rounded-full bg-[#25D366] text-white">
+                <WhatsAppIcon width={18} height={18} />
+              </span>
+              <span className="flex flex-col text-left leading-tight">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-white/55">
+                  Chat with us
+                </span>
+                <span className="text-[15px] font-600 text-white">{WHATSAPP_NUMBER}</span>
+              </span>
             </a>
           </div>
 
