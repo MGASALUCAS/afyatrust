@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "title": "AfyaTrust — Afya Bila Mshtuko wa Kifedha",
+    "description": "AfyaTrust inawawezesha bodaboda, wafanyabiashara, machinga na familia kupata matibabu kupitia uanachama wa afya wa kila mwezi kwa bei nafuu. Kwa wachapakazi na familia zao Tanzania."
+  },
+  "nav": {
+    "how": "Jinsi inavyofanya kazi",
+    "plans": "Vifurushi",
+    "impact": "Matokeo",
+    "about": "Kuhusu sisi",
+    "cta": "Jiunge na AfyaTrust",
+    "menuToggle": "Fungua menyu",
+    "languageLabel": "Lugha"
+  },
+  "hero": {
+    "eyebrow": "Kwa wachapakazi na familia zao Tanzania",
+    "titleLine1": "Afya Bila",
+    "titleLine2": "Mshtuko wa Kifedha",
+    "sub": "Uanachama wa afya wa kila mwezi kwa bei nafuu — kwa bodaboda, wafanyabiashara na familia. Ugonjwa mmoja usifute jasho la maisha yako yote.",
+    "ctaPrimary": "Jiunge na AfyaTrust",
+    "ctaSecondary": "Ona jinsi inavyofanya kazi",
+    "clipLabel": "Onyesha klipu"
+  },
+  "journey": {
+    "eyebrow": "Safari yako",
+    "confirmed": "Uanachama umethibitishwa",
+    "steps": [
+      { "k": "01", "title": "Unajiunga", "line": "Bodaboda, mfanyabiashara, mama. Malipo madogo ya kila mwezi." },
+      { "k": "02", "title": "Upo salama", "line": "Uanachama umethibitishwa. Hakuna makaratasi. Hakuna kusubiri." },
+      { "k": "03", "title": "Unaingia kliniki", "line": "Kliniki yoyote mshirika iliyo karibu nawe. Onyesha tu uanachama wako." },
+      { "k": "04", "title": "Unatibiwa", "line": "Matibabu kwanza. Hutoi pesa kaunta. Hakuna hofu." }
+    ]
+  },
+  "how": {
+    "eyebrow": "Jinsi inavyofanya kazi",
+    "title": "Hatua nne tu. Basi.",
+    "steps": [
+      { "n": "01", "title": "Chagua kifurushi", "desc": "Chagua kinachoendana na maisha yako." },
+      { "n": "02", "title": "Lipa kila mwezi", "desc": "Kiasi kidogo, kile kile kila mwezi." },
+      { "n": "03", "title": "Ingia kliniki", "desc": "Kliniki washirika zipo karibu nawe." },
+      { "n": "04", "title": "Pata matibabu", "desc": "Hutoi pesa kaunta." }
+    ]
+  },
+  "plans": {
+    "eyebrow": "Vifurushi",
+    "title": "Bei moja. Hakuna cha kukushtukiza.",
+    "sub": "Chagua kinachoendana na maisha yako.",
+    "recommended": "Tunapendekeza",
+    "perMonth": "/mwezi",
+    "registration": "Usajili",
+    "benefitClinics": "Huduma katika kliniki washirika",
+    "benefitNoCash": "Hutoi pesa kaunta",
+    "choose": "Chagua",
+    "helpTitle": "Hujui uchague kipi?",
+    "helpText": "Tuambie kazi yako, tutakusaidia kuchagua.",
+    "helpCta": "Ongea nasi",
+    "footnote": "Bei zote ni TZS · Usajili unalipwa mara moja tu.",
+    "taglines": {
+      "Jamii Afya": "Kwa ajili ya jamii.",
+      "Rider Basic": "Kwa dereva wa bodaboda.",
+      "Mama Bora": "Kwa akina mama na wajasiriamali wanawake.",
+      "Rider Max": "Kinga zaidi, siku zaidi barabarani.",
+      "Familia": "Kwa familia nzima."
+    }
+  },
+  "why": {
+    "eyebrow": "Kwa nini AfyaTrust",
+    "title": "Imeundwa kuendana na maisha halisi",
+    "items": [
+      { "title": "Bei nafuu", "desc": "Gharama unayoweza kuipangia." },
+      { "title": "Huduma ya haraka", "desc": "Kliniki zipo unapoishi na unapofanya kazi." },
+      { "title": "Amani ya moyo", "desc": "Fanya kazi bila hofu ya bili." }
+    ]
+  },
+  "impact": {
+    "eyebrow": "Matokeo",
+    "title": "Zaidi ya matibabu",
+    "sub": "Kila uanachama unalinda kipato cha mtu. Huu ndio mtandao tunaoujenga.",
+    "network": "Mtandao unaokua",
+    "stats": ["Wanachama wanaolindwa", "Mahudhurio kliniki", "Kliniki washirika", "Uhakika wa huduma"],
+    "stories": [
+      { "quote": "Naendesha bodaboda kila siku. Sasa kwenda kliniki hakunimalizii mfuko.", "name": "Juma", "role": "Bodaboda · Dar es Salaam" },
+      { "quote": "Afya ya familia yangu ilikuwa wasiwasi wangu mkubwa. Sasa nimetulia.", "name": "Neema", "role": "Mfanyabiashara · Mwanza" }
+    ]
+  },
+  "contact": {
+    "title": "Linda afya yako leo.",
+    "sub": "Tutumie ujumbe WhatsApp, tutakuanzisha ndani ya dakika chache."
+  },
+  "footer": {
+    "blurb": "Afya bila mshtuko wa kifedha. Kwa wachapakazi na familia zao Tanzania.",
+    "chat": "Ongea nasi",
+    "columns": [
+      {
+        "title": "Huduma",
+        "links": [
+          { "label": "Jinsi inavyofanya kazi", "href": "/#how" },
+          { "label": "Vifurushi", "href": "/#plans" },
+          { "label": "Matokeo", "href": "/#impact" },
+          { "label": "Kuhusu sisi", "href": "/about" },
+          { "label": "Wasiliana nasi", "href": "/#contact" }
+        ]
+      },
+      {
+        "title": "Kisheria",
+        "links": [
+          { "label": "Sera ya Faragha", "href": "#" },
+          { "label": "Masharti ya Matumizi", "href": "#" }
+        ]
+      }
+    ],
+    "rights": "Haki zote zimehifadhiwa.",
+    "tag": "Kwa wachapakazi na familia zao Tanzania."
+  },
+  "about": {
+    "eyebrow": "Kuhusu AfyaTrust",
+    "title": "Afya haipaswi kusubiri siku ya mshahara.",
+    "intro": "Tunajenga kinga ya afya kwa watu wanaoifanya Tanzania isonge mbele — bodaboda, wafanyabiashara, machinga na familia. Si bima. Ni uhakika wa kupata huduma.",
+    "storyEyebrow": "Tulipotoka",
+    "storyTitle": "Kwa nini tulianza",
+    "storyP1": "Tumekulia miongoni mwa watu wanaoishi kwa nguvu zao na muda wao. Bodaboda anayevumilia homa kwa sababu kwenda kliniki ni sawa na kupoteza kipato cha siku nzima. Mama anayeahirisha matibabu yake ili kulipa ada za shule. Pesa ikikosekana, matibabu yanasubiri — na tatizo dogo linageuka dharura.",
+    "storyP2": "AfyaTrust ilianza na imani moja: ugonjwa mmoja usifute jasho la maisha yote. Kwa hiyo tukajenga kitu rahisi — uanachama mdogo wa kila mwezi unaokuwezesha kuingia kliniki mshirika na kutibiwa, bila kutoa pesa kaunta.",
+    "quote": "Hatupo hapa kuuza bima. Tupo ili homa ijayo isiwe sababu ya familia kurudi nyuma mwaka mzima.",
+    "foundersCaption": "waanzilishi wenza, AfyaTrust.",
+    "foundersAlt": "Waanzilishi wenza wa AfyaTrust",
+    "roles": ["Mwanzilishi Mwenza & Mkurugenzi Mtendaji", "Mwanzilishi Mwenza & Huduma"],
+    "teamEyebrow": "Timu yetu",
+    "teamTitle": "Timu ndogo, iliyo karibu na watu.",
+    "fieldEyebrow": "Uwandani",
+    "fieldTitle": "Kila kifurushi tunachounda kinaanzia hapa — kusikiliza kwanza.",
+    "fieldAlt": "Timu ya AfyaTrust ikizungumza na mfanyabiashara sokoni Kariakoo",
+    "fieldCaption": "Sokoni pamoja na watu tunaowahudumia. Tunakaa na wafanyabiashara na bodaboda kujifunza kinga inapaswa kugharimu kiasi gani — kabla hatujaunda kifurushi chochote.",
+    "beliefsEyebrow": "Tunachoamini",
+    "beliefs": [
+      { "title": "Anzia sokoni", "desc": "Kila kifurushi kinaanza na watu watakaokitumia — si ofisini." },
+      { "title": "Pesa isiwe kikwazo", "desc": "Mtu asilazimike kuchagua kati ya kutibu homa na kipato cha siku." },
+      { "title": "Linda jasho la watu", "desc": "Watu wenye afya wanaendelea kuendesha, kufanya biashara na kuhudumia familia. Hilo ndilo lengo." }
+    ],
+    "ctaTitle": "Jiunge na watu wanaolinda jasho lao.",
+    "ctaButton": "Jiunge na AfyaTrust"
+  }
+}

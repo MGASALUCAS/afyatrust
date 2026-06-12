@@ -1,31 +1,17 @@
+"use client";
+
 import Image from "next/image";
-import { WHATSAPP_NUMBER, WHATSAPP_LINK, TAGLINE, TAGLINE_SUB } from "@/lib/content";
+import { WHATSAPP_NUMBER, WHATSAPP_LINK } from "@/lib/content";
+import { useI18n } from "@/lib/i18n";
 import { WhatsAppIcon } from "./Icons";
 
 type FooterLink = { label: string; href: string };
 type FooterColumn = { title: string; links: FooterLink[] };
 
-const columns: FooterColumn[] = [
-  {
-    title: "Product",
-    links: [
-      { label: "How it works", href: "/#how" },
-      { label: "Plans", href: "/#plans" },
-      { label: "Impact", href: "/#impact" },
-      { label: "About", href: "/about" },
-      { label: "Contact", href: "/#contact" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms", href: "#" },
-    ],
-  },
-];
-
 export default function Footer() {
+  const { t, tr } = useI18n();
+  const columns = tr<FooterColumn[]>("footer.columns");
+
   return (
     <footer className="bg-teal-dark">
       <div className="container-page py-16">
@@ -40,7 +26,7 @@ export default function Footer() {
               className="h-12 w-auto"
             />
             <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-white/70">
-              {TAGLINE}. {TAGLINE_SUB}.
+              {t("footer.blurb")}
             </p>
             <a
               href={WHATSAPP_LINK}
@@ -53,7 +39,7 @@ export default function Footer() {
               </span>
               <span className="flex flex-col text-left leading-tight">
                 <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-white/55">
-                  Chat with us
+                  {t("footer.chat")}
                 </span>
                 <span className="text-[15px] font-600 text-white">{WHATSAPP_NUMBER}</span>
               </span>
@@ -82,8 +68,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-[13px] text-white/45 sm:flex-row">
-          <p>© {new Date().getFullYear()} AfyaTrust. All rights reserved.</p>
-          <p>{TAGLINE_SUB}.</p>
+          <p>
+            © {new Date().getFullYear()} AfyaTrust. {t("footer.rights")}
+          </p>
+          <p>{t("footer.tag")}</p>
         </div>
       </div>
     </footer>

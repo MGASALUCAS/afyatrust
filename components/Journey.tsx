@@ -11,11 +11,13 @@ import {
   type Transition,
   type Variants,
 } from "framer-motion";
-import { journey } from "@/lib/content";
+import { useI18n } from "@/lib/i18n";
 import { MemberIcon, ClinicIcon, TreatmentIcon, CheckIcon } from "./Icons";
 import BackgroundVideo from "./BackgroundVideo";
 
-function StageVisual({ index }: { index: number }) {
+type JourneyStep = { k: string; title: string; line: string };
+
+function StageVisual({ index, confirmedLabel }: { index: number; confirmedLabel: string }) {
   // A distinct, purposeful visual per stage — no decoration for its own sake.
   const reduce = useReducedMotion();
   const spring: Transition = { type: "spring", stiffness: 140, damping: 18 };
@@ -44,7 +46,7 @@ function StageVisual({ index }: { index: number }) {
             <span className="grid h-20 w-20 place-items-center rounded-full bg-teal text-white">
               <CheckIcon width={40} height={40} />
             </span>
-            <span className="text-[13px] font-semibold text-teal">Membership confirmed</span>
+            <span className="text-[13px] font-semibold text-teal">{confirmedLabel}</span>
           </div>
         )}
         {index === 2 && <ClinicIcon className="relative h-24 w-24" />}
@@ -58,6 +60,8 @@ export default function Journey() {
   const ref = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
   const reduce = useReducedMotion();
+  const { t, tr } = useI18n();
+  const journey = tr<JourneyStep[]>("journey.steps");
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -85,7 +89,7 @@ export default function Journey() {
           {/* Left — the words change as you scroll */}
           <div>
             <span className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-sage">
-              The journey
+              {t("journey.eyebrow")}
             </span>
             <div className="relative mt-6 h-[220px]">
               <AnimatePresence mode="wait">
@@ -127,7 +131,7 @@ export default function Journey() {
           {/* Right — the visual changes as you scroll */}
           <div className="flex items-center justify-center">
             <div className="relative">
-              <StageVisual index={active} />
+              <StageVisual index={active} confirmedLabel={t("journey.confirmed")} />
               {/* growing connector underneath, ties the stages together */}
               <div className="mt-10 h-px w-64 overflow-hidden bg-white/20">
                 <motion.div

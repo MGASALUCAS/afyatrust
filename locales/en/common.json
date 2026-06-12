@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "title": "AfyaTrust — Health Without Financial Shock",
+    "description": "AfyaTrust helps riders, traders, vendors and families access healthcare through affordable monthly health memberships. Built for informal workers & families in Tanzania."
+  },
+  "nav": {
+    "how": "How it works",
+    "plans": "Plans",
+    "impact": "Impact",
+    "about": "About",
+    "cta": "Join AfyaTrust",
+    "menuToggle": "Toggle menu",
+    "languageLabel": "Language"
+  },
+  "hero": {
+    "eyebrow": "Built for informal workers & families in Tanzania",
+    "titleLine1": "Health Without",
+    "titleLine2": "Financial Shock",
+    "sub": "Affordable monthly health membership for riders, traders and families. One sickness should never undo a lifetime of work.",
+    "ctaPrimary": "Join AfyaTrust",
+    "ctaSecondary": "See how it works",
+    "clipLabel": "Show clip"
+  },
+  "journey": {
+    "eyebrow": "The journey",
+    "confirmed": "Membership confirmed",
+    "steps": [
+      { "k": "01", "title": "You join", "line": "A rider, a trader, a mother. One small monthly payment." },
+      { "k": "02", "title": "You're covered", "line": "Membership confirmed. No paperwork. No waiting." },
+      { "k": "03", "title": "You walk in", "line": "Any partner clinic near you. Just show you're a member." },
+      { "k": "04", "title": "You're treated", "line": "Care first. No cash at the counter. No fear." }
+    ]
+  },
+  "how": {
+    "eyebrow": "How it works",
+    "title": "Four steps. That's it.",
+    "steps": [
+      { "n": "01", "title": "Choose a plan", "desc": "Pick what fits your life." },
+      { "n": "02", "title": "Pay monthly", "desc": "Small, predictable, yours." },
+      { "n": "03", "title": "Walk into a clinic", "desc": "Partner clinics near you." },
+      { "n": "04", "title": "Get treated", "desc": "No cash at the counter." }
+    ]
+  },
+  "plans": {
+    "eyebrow": "Plans",
+    "title": "One price. No surprises.",
+    "sub": "Pick what fits your life.",
+    "recommended": "Recommended",
+    "perMonth": "/mo",
+    "registration": "Registration",
+    "benefitClinics": "Partner clinic access",
+    "benefitNoCash": "No cash at the counter",
+    "choose": "Choose",
+    "helpTitle": "Not sure which?",
+    "helpText": "Tell us about your work. We'll help you choose.",
+    "helpCta": "Talk to us",
+    "footnote": "Prices in TZS · Registration is a one-time fee.",
+    "taglines": {
+      "Jamii Afya": "For the community.",
+      "Rider Basic": "For the rider.",
+      "Mama Bora": "For mothers & women in business.",
+      "Rider Max": "More cover, more days on the road.",
+      "Familia": "For the whole family."
+    }
+  },
+  "why": {
+    "eyebrow": "Why AfyaTrust",
+    "title": "Built around real life",
+    "items": [
+      { "title": "Affordable", "desc": "A cost you can plan for." },
+      { "title": "Fast access", "desc": "Clinics where you live and work." },
+      { "title": "Peace of mind", "desc": "Work without the fear of a bill." }
+    ]
+  },
+  "impact": {
+    "eyebrow": "Impact",
+    "title": "Bigger than healthcare",
+    "sub": "Every membership protects a livelihood. Here's the network we're building.",
+    "network": "The growing network",
+    "stats": ["Members protected", "Clinic visits", "Partner clinics", "Uptime goal"],
+    "stories": [
+      { "quote": "I ride every day. Now a clinic visit won't empty my pocket.", "name": "Juma", "role": "Rider · Dar es Salaam" },
+      { "quote": "My family's health used to be my biggest worry. Now it's handled.", "name": "Neema", "role": "Trader · Mwanza" }
+    ]
+  },
+  "contact": {
+    "title": "Protect your health today.",
+    "sub": "Message us on WhatsApp. We'll get you started in minutes."
+  },
+  "footer": {
+    "blurb": "Health without financial shock. Built for informal workers & families in Tanzania.",
+    "chat": "Chat with us",
+    "columns": [
+      {
+        "title": "Product",
+        "links": [
+          { "label": "How it works", "href": "/#how" },
+          { "label": "Plans", "href": "/#plans" },
+          { "label": "Impact", "href": "/#impact" },
+          { "label": "About", "href": "/about" },
+          { "label": "Contact us", "href": "/#contact" }
+        ]
+      },
+      {
+        "title": "Legal",
+        "links": [
+          { "label": "Privacy Policy", "href": "#" },
+          { "label": "Terms", "href": "#" }
+        ]
+      }
+    ],
+    "rights": "All rights reserved.",
+    "tag": "Built for informal workers & families in Tanzania."
+  },
+  "about": {
+    "eyebrow": "About AfyaTrust",
+    "title": "Health is the one thing that shouldn't wait for payday.",
+    "intro": "We're building health protection for the people who keep Tanzania moving — riders, traders, vendors and families. Not insurance. Access.",
+    "storyEyebrow": "Our story",
+    "storyTitle": "Why we started",
+    "storyP1": "We grew up around people who work with their hands and their hours. A rider who pushes through a fever because a clinic visit costs a day's pay. A mama who delays her own care to cover school fees. When the money isn't there, treatment waits — and small problems become emergencies.",
+    "storyP2": "AfyaTrust started with one belief: one sickness should never undo a lifetime of work. So we built something simple — a small monthly membership that lets you walk into a partner clinic and be treated, without cash at the counter.",
+    "quote": "We're not here to sell policies. We're here so that the next fever doesn't become the thing that sets a family back a year.",
+    "foundersCaption": "co-founders, AfyaTrust.",
+    "foundersAlt": "AfyaTrust co-founders",
+    "roles": ["Co-founder & CEO", "Co-founder & Product"],
+    "teamEyebrow": "The team",
+    "teamTitle": "A small team, close to the ground.",
+    "fieldEyebrow": "In the field",
+    "fieldTitle": "Every plan we build starts here — listening first.",
+    "fieldAlt": "AfyaTrust team talking with a trader at Kariakoo market",
+    "fieldCaption": "In the market with the people we serve. We sit with traders and riders to learn what protection should really cost — before we ever design a plan.",
+    "beliefsEyebrow": "What we believe",
+    "beliefs": [
+      { "title": "Start in the market", "desc": "Every plan begins with the people who'll use it — not a boardroom." },
+      { "title": "Cash should never decide", "desc": "No one should weigh a fever against a day's earnings." },
+      { "title": "Protect the work", "desc": "Healthy people keep riding, trading and providing. That's the goal." }
+    ],
+    "ctaTitle": "Join the people protecting their work.",
+    "ctaButton": "Join AfyaTrust"
+  }
+}

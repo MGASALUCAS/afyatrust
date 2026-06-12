@@ -1,9 +1,13 @@
+"use client";
+
 import { WHATSAPP_NUMBER, WHATSAPP_LINK } from "@/lib/content";
+import { useI18n } from "@/lib/i18n";
 import { WhatsAppIcon, ArrowIcon } from "./Icons";
 import Reveal from "./motion/Reveal";
 import BackgroundVideo from "./BackgroundVideo";
 
 export default function Contact() {
+  const { t } = useI18n();
   return (
     <section id="contact" className="section">
       <div className="container-page">
@@ -13,10 +17,10 @@ export default function Contact() {
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-teal-deep/0 to-teal-dark/40" />
             <div className="relative mx-auto max-w-2xl">
               <h2 className="font-display text-[clamp(30px,4.5vw,46px)] font-700 leading-tight tracking-tight text-white">
-                Protect your health today.
+                {t("contact.title")}
               </h2>
               <p className="mt-4 text-[18px] leading-relaxed text-sage">
-                Message us on WhatsApp. We&apos;ll get you started in minutes.
+                {t("contact.sub")}
               </p>
 
               <a

@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import { WHATSAPP_LINK, TAGLINE, TAGLINE_SUB } from "@/lib/content";
+import { WHATSAPP_LINK } from "@/lib/content";
+import { useI18n } from "@/lib/i18n";
 import { ArrowIcon } from "./Icons";
 
 // Fine film grain — the cinematic fallback if the videos ever fail to load.
@@ -10,12 +11,13 @@ const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E\")";
 
 const SOURCES = ["/media/hero.mp4", "/media/hero2.mp4"];
-// The official tagline, animated word by word.
-const words = TAGLINE.split(" ");
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
+  const { t, locale } = useI18n();
+  // The tagline always reads as two lines, each animated word by word.
+  const lines = [t("hero.titleLine1"), t("hero.titleLine2")];
   const [active, setActive] = useState(0);
   const [failed, setFailed] = useState(false);
 
@@ -141,24 +143,35 @@ export default function Hero() {
             className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-sage sm:text-[13px] sm:tracking-[0.16em]"
           >
             <span className="h-1 w-1 rounded-full bg-gold sm:h-1.5 sm:w-1.5" />
-            {TAGLINE_SUB}
+            {t("hero.eyebrow")}
           </motion.span>
 
-          <h1 className="mt-6 max-w-4xl font-display text-[clamp(32px,6vw,64px)] font-700 leading-[1.04] tracking-tight text-white [text-shadow:0_2px_30px_rgba(0,52,58,0.45)]">
-            {words.map((w, i) => (
-              <span key={i} className="contents">
-                <motion.span
-                  className="inline-block"
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 + i * 0.09 }}
-                >
-                  {w}&nbsp;
-                </motion.span>
-                {/* Break after "Without" — the tagline always reads as two lines */}
-                {i === 1 && <br />}
-              </span>
-            ))}
+          <h1
+            key={locale}
+            className="mt-6 max-w-4xl font-display text-[clamp(32px,6vw,64px)] font-700 leading-[1.04] tracking-tight text-white [text-shadow:0_2px_30px_rgba(0,52,58,0.45)]"
+          >
+            {lines.map((line, li) => {
+              const offset = li === 0 ? 0 : lines[0].split(" ").length;
+              return (
+                <span key={li} className="block">
+                  {line.split(" ").map((w, i) => (
+                    <motion.span
+                      key={i}
+                      className="inline-block"
+                      initial={{ opacity: 0, y: 24 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.7,
+                        ease: [0.22, 1, 0.36, 1],
+                        delay: 0.15 + (offset + i) * 0.09,
+                      }}
+                    >
+                      {w}&nbsp;
+                    </motion.span>
+                  ))}
+                </span>
+              );
+            })}
           </h1>
 
           <motion.p
@@ -167,8 +180,7 @@ export default function Hero() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
             className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/85"
           >
-            Affordable monthly health membership for riders, traders and families.
-            One sickness should never undo a lifetime of work.
+            {t("hero.sub")}
           </motion.p>
 
           <motion.div
@@ -183,14 +195,14 @@ export default function Hero() {
               rel="noopener"
               className="btn inline-flex bg-white px-4 py-2 text-[13px] text-teal shadow-soft hover:-translate-y-0.5 sm:px-6 sm:py-3 sm:text-[15px]"
             >
-              Join AfyaTrust
+              {t("hero.ctaPrimary")}
               <ArrowIcon className="h-3.5 w-3.5 sm:h-[18px] sm:w-[18px]" />
             </a>
             <a
               href="#how"
               className="btn border border-white/30 bg-white/5 px-4 py-2 text-[13px] text-white backdrop-blur-sm hover:bg-white/10 sm:px-6 sm:py-3 sm:text-[15px]"
             >
-              See how it works
+              {t("hero.ctaSecondary")}
             </a>
           </motion.div>
         </div>
@@ -202,7 +214,7 @@ export default function Hero() {
           {SOURCES.map((src, i) => (
             <button
               key={src}
-              aria-label={`Show clip ${i + 1}`}
+              aria-label={`${t("hero.clipLabel")} ${i + 1}`}
               onClick={() => setActive(i)}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 active === i ? "w-7 bg-white" : "w-3 bg-white/40 hover:bg-white/70"

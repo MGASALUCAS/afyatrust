@@ -2,9 +2,12 @@
 
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { stats, stories } from "@/lib/content";
+import { stats } from "@/lib/content";
+import { useI18n } from "@/lib/i18n";
 import SectionHead from "./SectionHead";
 import Counter from "./motion/Counter";
+
+type Story = { quote: string; name: string; role: string };
 
 // A growing community network — nodes connect to a central clinic as it comes into view.
 function NetworkViz() {
@@ -69,13 +72,17 @@ function NetworkViz() {
 }
 
 export default function Impact() {
+  const { t, tr } = useI18n();
+  const statLabels = tr<string[]>("impact.stats");
+  const stories = tr<Story[]>("impact.stories");
+
   return (
     <section id="impact" className="section bg-sage-mist">
       <div className="container-page">
         <SectionHead
-          eyebrow="Impact"
-          title="Bigger than healthcare"
-          sub="Every membership protects a livelihood. Here's the network we're building."
+          eyebrow={t("impact.eyebrow")}
+          title={t("impact.title")}
+          sub={t("impact.sub")}
         />
 
         <div className="mt-16 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
@@ -83,7 +90,7 @@ export default function Impact() {
           <div className="grid grid-cols-2 gap-6">
             {stats.map((s, i) => (
               <motion.div
-                key={s.label}
+                key={statLabels[i] ?? s.label}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
@@ -93,7 +100,9 @@ export default function Impact() {
                 <p className="font-display text-[clamp(34px,5vw,48px)] font-700 leading-none text-teal">
                   <Counter value={s.value} suffix={s.suffix} decimals={s.value % 1 !== 0 ? 1 : 0} />
                 </p>
-                <p className="mt-3 text-[15px] font-medium text-charcoal-muted">{s.label}</p>
+                <p className="mt-3 text-[15px] font-medium text-charcoal-muted">
+                  {statLabels[i] ?? s.label}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -101,7 +110,7 @@ export default function Impact() {
           {/* Network visual */}
           <div className="rounded-xl2 border border-line bg-white p-6 shadow-card">
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-charcoal-faint">
-              The growing network
+              {t("impact.network")}
             </p>
             <div className="mt-2 h-[260px]">
               <NetworkViz />

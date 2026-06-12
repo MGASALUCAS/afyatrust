@@ -1,24 +1,28 @@
-import { reasons, type ReasonIcon } from "@/lib/content";
+"use client";
+
+import { useI18n } from "@/lib/i18n";
 import SectionHead from "./SectionHead";
 import Reveal from "./motion/Reveal";
 import { WalletIcon, BoltIcon, ShieldIcon } from "./Icons";
 import type { ComponentType, SVGProps } from "react";
 
-const iconMap: Record<ReasonIcon, ComponentType<SVGProps<SVGSVGElement>>> = {
-  wallet: WalletIcon,
-  bolt: BoltIcon,
-  shield: ShieldIcon,
-};
+type ReasonCopy = { title: string; desc: string };
+
+// Icon order matches the why.items order in the locale files.
+const icons: ComponentType<SVGProps<SVGSVGElement>>[] = [WalletIcon, BoltIcon, ShieldIcon];
 
 export default function WhyAfyaTrust() {
+  const { t, tr } = useI18n();
+  const items = tr<ReasonCopy[]>("why.items");
+
   return (
     <section id="why" className="section">
       <div className="container-page">
-        <SectionHead eyebrow="Why AfyaTrust" title="Built around real life" />
+        <SectionHead eyebrow={t("why.eyebrow")} title={t("why.title")} />
 
         <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {reasons.map((r, i) => {
-            const Icon = iconMap[r.icon];
+          {items.map((r, i) => {
+            const Icon = icons[i] ?? WalletIcon;
             return (
               <Reveal
                 key={r.title}

@@ -1,12 +1,19 @@
-import { steps } from "@/lib/content";
+"use client";
+
+import { useI18n } from "@/lib/i18n";
 import SectionHead from "./SectionHead";
 import Reveal from "./motion/Reveal";
 
+type Step = { n: string; title: string; desc: string };
+
 export default function HowItWorks() {
+  const { t, tr } = useI18n();
+  const steps = tr<Step[]>("how.steps");
+
   return (
     <section id="how" className="section">
       <div className="container-page">
-        <SectionHead eyebrow="How it works" title="Four steps. That's it." />
+        <SectionHead eyebrow={t("how.eyebrow")} title={t("how.title")} />
 
         <div className="relative mt-16">
           <div className="absolute left-0 right-0 top-7 hidden h-px bg-line lg:block" />

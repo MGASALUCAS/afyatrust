@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { nav, WHATSAPP_LINK } from "@/lib/content";
+import { WHATSAPP_LINK } from "@/lib/content";
+import { useI18n } from "@/lib/i18n";
+import LanguageToggle from "./LanguageToggle";
 
 function Logo({ light }: { light: boolean }) {
   // White wordmark over the dark hero glass; teal wordmark on the white header.
@@ -24,7 +26,15 @@ function Logo({ light }: { light: boolean }) {
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { t } = useI18n();
   const pathname = usePathname();
+
+  const navItems = [
+    { href: "/#how", label: t("nav.how") },
+    { href: "/#plans", label: t("nav.plans") },
+    { href: "/#impact", label: t("nav.impact") },
+    { href: "/about", label: t("nav.about") },
+  ];
   // Only the home page has a dark full-screen hero to ride over.
   const overHero = pathname === "/";
 
@@ -55,7 +65,7 @@ export default function Navbar() {
           <Logo light={light} />
 
           <nav className="hidden items-center gap-8 md:flex">
-            {nav.map((item) => (
+            {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
@@ -69,6 +79,7 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
+            <LanguageToggle light={light} />
             <a
               href={WHATSAPP_LINK}
               target="_blank"
@@ -79,29 +90,32 @@ export default function Navbar() {
                   : "bg-teal text-white hover:bg-teal-deep hover:-translate-y-0.5"
               }`}
             >
-              Join AfyaTrust
+              {t("nav.cta")}
             </a>
           </div>
 
-          <button
-            aria-label="Toggle menu"
-            onClick={() => setOpen((v) => !v)}
-            className={`grid h-10 w-10 place-items-center rounded-lg border md:hidden ${
-              light ? "border-white/30 text-white" : "border-line text-charcoal"
-            }`}
-          >
-            <span className="space-y-1.5">
-              <span className={`block h-0.5 w-5 bg-current transition-transform ${open ? "translate-y-2 rotate-45" : ""}`} />
-              <span className={`block h-0.5 w-5 bg-current transition-opacity ${open ? "opacity-0" : ""}`} />
-              <span className={`block h-0.5 w-5 bg-current transition-transform ${open ? "-translate-y-2 -rotate-45" : ""}`} />
-            </span>
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <LanguageToggle light={light} />
+            <button
+              aria-label={t("nav.menuToggle")}
+              onClick={() => setOpen((v) => !v)}
+              className={`grid h-10 w-10 place-items-center rounded-lg border ${
+                light ? "border-white/30 text-white" : "border-line text-charcoal"
+              }`}
+            >
+              <span className="space-y-1.5">
+                <span className={`block h-0.5 w-5 bg-current transition-transform ${open ? "translate-y-2 rotate-45" : ""}`} />
+                <span className={`block h-0.5 w-5 bg-current transition-opacity ${open ? "opacity-0" : ""}`} />
+                <span className={`block h-0.5 w-5 bg-current transition-transform ${open ? "-translate-y-2 -rotate-45" : ""}`} />
+              </span>
+            </button>
+          </div>
         </div>
 
         {open && (
           <div className="border-t border-line md:hidden">
             <nav className="flex flex-col gap-1 px-4 py-4">
-              {nav.map((item) => (
+              {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
@@ -118,7 +132,7 @@ export default function Navbar() {
                 onClick={() => setOpen(false)}
                 className="btn-primary mt-2 w-full"
               >
-                Join AfyaTrust
+                {t("nav.cta")}
               </a>
             </nav>
           </div>

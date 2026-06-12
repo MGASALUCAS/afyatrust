@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import { TAGLINE, TAGLINE_SUB } from "@/lib/content";
+import { LanguageProvider } from "@/lib/i18n";
 import "./globals.css";
 
 const inter = Inter({
@@ -38,7 +39,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
-      <body>{children}</body>
+      <body>
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }
