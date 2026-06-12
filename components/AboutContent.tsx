@@ -13,7 +13,10 @@ type Belief = { title: string; desc: string };
 export default function AboutContent() {
   const { t, tr } = useI18n();
   const beliefs = tr<Belief[]>("about.beliefs");
+  const story = tr<string[]>("about.story");
   const roles = tr<string[]>("about.roles");
+  const tags = tr<string[][]>("about.tags");
+  const bios = tr<string[][]>("about.bios");
 
   return (
     <>
@@ -65,25 +68,30 @@ export default function AboutContent() {
                 </h2>
               </Reveal>
 
-              <div className="mt-6 space-y-5 text-[17px] leading-relaxed text-charcoal-muted">
-                <Reveal delay={0.1}>
-                  <p>{t("about.storyP1")}</p>
+              <div className="mt-6 space-y-5 text-[16.5px] leading-relaxed text-charcoal-muted">
+                {story.map((p, i) => (
+                  <Reveal key={i} delay={0.1 + i * 0.04}>
+                    <p>{p}</p>
+                  </Reveal>
+                ))}
+                <Reveal delay={0.1 + story.length * 0.04}>
+                  <p className="font-display text-[19px] font-700 text-charcoal">
+                    {t("about.storyPunch")}
+                  </p>
                 </Reveal>
-                <Reveal delay={0.15}>
-                  <p>{t("about.storyP2")}</p>
+                <Reveal delay={0.14 + story.length * 0.04}>
+                  <p>{t("about.storyClose")}</p>
                 </Reveal>
               </div>
 
-              {/* Co-founder note */}
+              {/* Founding team statement */}
               <Reveal delay={0.2}>
                 <blockquote className="mt-8 border-l-2 border-teal pl-6">
-                  <p className="font-display text-[20px] font-600 leading-snug text-charcoal">
+                  <p className="font-display text-[19px] font-600 leading-snug text-charcoal">
                     &ldquo;{t("about.quote")}&rdquo;
                   </p>
-                  <footer className="mt-4 text-[14px] text-charcoal-muted">
-                    <span className="font-600 text-charcoal">{founders[0].name}</span>
-                    {" · "}
-                    {roles[0]}
+                  <footer className="mt-4 text-[14px] font-600 text-charcoal">
+                    — {t("about.quoteAuthor")}
                   </footer>
                 </blockquote>
               </Reveal>
@@ -102,18 +110,40 @@ export default function AboutContent() {
                 {t("about.teamTitle")}
               </h2>
             </Reveal>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:max-w-2xl">
+            <div className="mt-12 space-y-8">
               {founders.map((f, i) => (
                 <Reveal key={f.name} delay={i * 0.08}>
-                  <div className="rounded-xl2 border border-line bg-white p-7">
-                    <span className="grid h-12 w-12 place-items-center rounded-full bg-teal text-[18px] font-700 text-white">
-                      {f.name.charAt(0)}
-                    </span>
-                    <h3 className="mt-5 font-display text-[19px] font-700 text-charcoal">
-                      {f.name}
-                    </h3>
-                    <p className="mt-1 text-[14px] text-charcoal-muted">{roles[i] ?? f.role}</p>
-                  </div>
+                  <article className="overflow-hidden rounded-xl2 border border-line bg-white shadow-card transition-shadow duration-300 hover:shadow-soft md:grid md:grid-cols-[300px_1fr] lg:grid-cols-[340px_1fr]">
+                    <SmartImage
+                      src={f.img}
+                      alt={f.name}
+                      className="h-80 sm:h-96 md:h-full md:min-h-[420px]"
+                      position="center 22%"
+                    />
+                    <div className="flex flex-col justify-center p-7 sm:p-9 lg:p-12">
+                      <h3 className="font-display text-[24px] font-700 tracking-tight text-charcoal sm:text-[27px]">
+                        {f.name}
+                      </h3>
+                      <p className="mt-1.5 text-[14px] font-semibold uppercase tracking-[0.08em] text-teal">
+                        {roles[i]}
+                      </p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {(tags[i] ?? []).map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-full bg-sage-mist px-3 py-1 text-[12px] font-semibold text-teal"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="mt-5 space-y-4 border-t border-line pt-5 text-[15.5px] leading-relaxed text-charcoal-muted">
+                        {(bios[i] ?? []).map((p, j) => (
+                          <p key={j}>{p}</p>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
                 </Reveal>
               ))}
             </div>

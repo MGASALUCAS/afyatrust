@@ -10,20 +10,25 @@ import {
   type ReactNode,
 } from "react";
 import en from "@/locales/en/common.json";
+import sw from "@/locales/sw/common.json";
 
 export type Locale = "en" | "sw";
-export const LOCALES: Locale[] = ["en", "sw"];
-export const DEFAULT_LOCALE: Locale = "en";
+// Kiswahili first — it is the site's default language.
+export const LOCALES: Locale[] = ["sw", "en"];
+export const DEFAULT_LOCALE: Locale = "sw";
 const STORAGE_KEY = "afyatrust.lang";
 
 type Dict = Record<string, unknown>;
 
-// English ships in the main bundle (it's the fallback); other languages
-// lazy-load on demand. Adding a language = one JSON file + one loader line.
-const dictionaries: Partial<Record<Locale, Dict>> = { en: en as unknown as Dict };
+// Kiswahili (default) and English (fallback) both ship in the main bundle;
+// future languages lazy-load on demand — one JSON file + one loader line each.
+const dictionaries: Partial<Record<Locale, Dict>> = {
+  en: en as unknown as Dict,
+  sw: sw as unknown as Dict,
+};
 const loaders: Record<Locale, () => Promise<Dict>> = {
   en: async () => en as unknown as Dict,
-  sw: async () => (await import("@/locales/sw/common.json")).default as unknown as Dict,
+  sw: async () => sw as unknown as Dict,
 };
 
 function lookup(dict: Dict | undefined, path: string): unknown {
@@ -48,8 +53,8 @@ type I18nValue = {
 const I18nContext = createContext<I18nValue | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  // Always render English on the server and for hydration; the real locale is
-  // applied right after mount so server and client markup never disagree.
+  // Always render the default locale on the server and for hydration; a saved
+  // preference is applied right after mount so server and client never disagree.
   const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE);
 
   const activate = useCallback(async (l: Locale) => {
@@ -57,16 +62,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLocaleState(l);
   }, []);
 
-  // First visit: saved choice wins; otherwise follow the browser language.
+  // Everyone starts in Kiswahili; only an explicitly saved choice overrides it.
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    const initial: Locale =
-      stored && (LOCALES as string[]).includes(stored)
-        ? (stored as Locale)
-        : navigator.language?.toLowerCase().startsWith("sw")
-          ? "sw"
-          : DEFAULT_LOCALE;
-    if (initial !== DEFAULT_LOCALE) void activate(initial);
+    if (stored && (LOCALES as string[]).includes(stored) && stored !== DEFAULT_LOCALE) {
+      void activate(stored as Locale);
+    }
   }, [activate]);
 
   const setLocale = useCallback(

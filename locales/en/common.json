@@ -104,8 +104,8 @@
       {
         "title": "Legal",
         "links": [
-          { "label": "Privacy Policy", "href": "#" },
-          { "label": "Terms", "href": "#" }
+          { "label": "Privacy Policy", "href": "/legal#privacy" },
+          { "label": "Terms of Use", "href": "/legal#terms" }
         ]
       }
     ],
@@ -118,14 +118,38 @@
     "intro": "We're building health protection for the people who keep Tanzania moving — riders, traders, vendors and families. Not insurance. Access.",
     "storyEyebrow": "Our story",
     "storyTitle": "Why we started",
-    "storyP1": "We grew up around people who work with their hands and their hours. A rider who pushes through a fever because a clinic visit costs a day's pay. A mama who delays her own care to cover school fees. When the money isn't there, treatment waits — and small problems become emergencies.",
-    "storyP2": "AfyaTrust started with one belief: one sickness should never undo a lifetime of work. So we built something simple — a small monthly membership that lets you walk into a partner clinic and be treated, without cash at the counter.",
-    "quote": "We're not here to sell policies. We're here so that the next fever doesn't become the thing that sets a family back a year.",
+    "story": [
+      "Informal workers don't fail to pay for healthcare because they don't value health. They fail because healthcare bills arrive as one large, sudden demand — while their income arrives in small, daily amounts.",
+      "There is no payslip. No monthly salary. No financial buffer. Just today's earnings and whatever tomorrow brings.",
+      "Over 26 million Tanzanians — 72% of the workforce — live this reality. They are the bodaboda rider, the market vendor, the mama ntilie. They are not on the margins of Tanzania's economy. They are Tanzania's economy.",
+      "Yet every health financing product available to them was built for someone else. Annual premiums. Lump-sum payments. Complex enrollment. Designed for salaried workers, applied to everyone else by default.",
+      "So when illness strikes, they suffer twice — first from the sickness, then from the bill. That payment shock wipes out weeks of earnings, pushes families into debt, and turns a manageable illness into a financial crisis."
+    ],
+    "storyPunch": "That is the problem AfyaTrust was built to solve.",
+    "storyClose": "We connect informal workers to contracted clinics at negotiated, capped prices — with membership designed around how people actually earn. No lump sums. No surprises. Just predictable, affordable healthcare access built for the life you actually live.",
+    "quote": "We did not build AfyaTrust from a boardroom. We built it from watching people we know — hardworking, resilient, dignified people — get financially devastated by a single hospital bill. That should never happen to anyone who wakes up every day and works as hard as Tanzania's informal workers do. AfyaTrust is our answer to a system that was never designed with them in mind.",
+    "quoteAuthor": "The AfyaTrust Founding Team",
     "foundersCaption": "co-founders, AfyaTrust.",
     "foundersAlt": "AfyaTrust co-founders",
-    "roles": ["Co-founder & CEO", "Co-founder & Product"],
-    "teamEyebrow": "The team",
-    "teamTitle": "A small team, close to the ground.",
+    "roles": [
+      "Founder & CEO, AfyaTrust",
+      "Co-Founder, Marketing & Public Relations Manager"
+    ],
+    "tags": [
+      ["Healthcare Entrepreneur"],
+      ["Medical Laboratory Professional", "Creative Director", "Documentarist"]
+    ],
+    "bios": [
+      [
+        "Johnson Thomson Daniel is a healthcare entrepreneur passionate about building solutions that make healthcare more accessible and affordable for underserved communities. Growing up, he witnessed how many families delay or avoid seeking care not because they do not value their health, but because they cannot afford the sudden costs that come with illness.",
+        "This experience inspired him to build AfyaTrust — a membership-based healthcare access platform designed to help informal workers and low-income families access outpatient care without the burden of unexpected medical expenses. Johnson believes that healthcare access should not depend on whether illness happens before or after payday."
+      ],
+      [
+        "My work highlights the \"unsung hero\" moments in healthcare. In Dar es Salaam, I directed the Changia Damu creative campaign, leading the visual movement to Be the one and donate blood."
+      ]
+    ],
+    "teamEyebrow": "Leadership",
+    "teamTitle": "The people behind AfyaTrust.",
     "fieldEyebrow": "In the field",
     "fieldTitle": "Every plan we build starts here — listening first.",
     "fieldAlt": "AfyaTrust team talking with a trader at Kariakoo market",

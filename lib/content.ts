@@ -10,13 +10,13 @@ export const WHATSAPP_LINK =
   "https://wa.me/255687331494?text=" +
   encodeURIComponent("Hi AfyaTrust, I would like to join.");
 
-// Co-founders — edit names here. Roles are translated in the locale files
-// (about.roles, same order). Photo: public/media/founders.jpeg
-export type Founder = { name: string; role: string };
+// Leadership — names and photos here; roles, expertise tags and bios are
+// translated in the locale files (about.roles / about.tags / about.bios, same order).
+export type Founder = { name: string; img: string };
 
 export const founders: Founder[] = [
-  { name: "Co-founder One", role: "Co-founder & CEO" },
-  { name: "Co-founder Two", role: "Co-founder & Product" },
+  { name: "Johnson Thomson Daniel", img: "/media/johnson-ceo.jpeg" },
+  { name: "Hamidu Hafidhi Hassani", img: "/media/hamidu-marketing.jpeg" },
 ];
 
 // Plan names and prices are not translated; taglines live in plans.taglines

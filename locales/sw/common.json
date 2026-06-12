@@ -104,8 +104,8 @@
       {
         "title": "Kisheria",
         "links": [
-          { "label": "Sera ya Faragha", "href": "#" },
-          { "label": "Masharti ya Matumizi", "href": "#" }
+          { "label": "Sera ya Faragha", "href": "/legal#privacy" },
+          { "label": "Masharti ya Matumizi", "href": "/legal#terms" }
         ]
       }
     ],
@@ -118,14 +118,38 @@
     "intro": "Tunajenga kinga ya afya kwa watu wanaoifanya Tanzania isonge mbele — bodaboda, wafanyabiashara, machinga na familia. Si bima. Ni uhakika wa kupata huduma.",
     "storyEyebrow": "Tulipotoka",
     "storyTitle": "Kwa nini tulianza",
-    "storyP1": "Tumekulia miongoni mwa watu wanaoishi kwa nguvu zao na muda wao. Bodaboda anayevumilia homa kwa sababu kwenda kliniki ni sawa na kupoteza kipato cha siku nzima. Mama anayeahirisha matibabu yake ili kulipa ada za shule. Pesa ikikosekana, matibabu yanasubiri — na tatizo dogo linageuka dharura.",
-    "storyP2": "AfyaTrust ilianza na imani moja: ugonjwa mmoja usifute jasho la maisha yote. Kwa hiyo tukajenga kitu rahisi — uanachama mdogo wa kila mwezi unaokuwezesha kuingia kliniki mshirika na kutibiwa, bila kutoa pesa kaunta.",
-    "quote": "Hatupo hapa kuuza bima. Tupo ili homa ijayo isiwe sababu ya familia kurudi nyuma mwaka mzima.",
+    "story": [
+      "Wafanyakazi wa sekta isiyo rasmi hawashindwi kulipia matibabu kwa sababu hawathamini afya. Wanashindwa kwa sababu bili za matibabu zinakuja kama hitaji moja kubwa la ghafla — wakati kipato chao kinakuja kidogo kidogo, kila siku.",
+      "Hakuna payslip. Hakuna mshahara wa mwezi. Hakuna akiba ya dharura. Ni kipato cha leo tu, na chochote kitakacholetwa na kesho.",
+      "Watanzania zaidi ya milioni 26 — asilimia 72 ya nguvukazi — wanaishi maisha haya. Ni dereva wa bodaboda, muuzaji wa sokoni, mama ntilie. Hawapo pembezoni mwa uchumi wa Tanzania. Wao ndio uchumi wa Tanzania.",
+      "Lakini kila bidhaa ya kugharamia matibabu iliyopo iliundwa kwa ajili ya mtu mwingine. Malipo ya mwaka mzima. Malipo ya mkupuo. Usajili mgumu. Iliundwa kwa wafanyakazi wenye mishahara, ikatumika kwa kila mtu mwingine kwa mazoea.",
+      "Hivyo ugonjwa unapotokea, wanaumia mara mbili — kwanza ugonjwa wenyewe, kisha bili. Mshtuko huo wa malipo unafuta kipato cha wiki kadhaa, unaingiza familia kwenye madeni, na kugeuza ugonjwa unaotibika kuwa janga la kifedha."
+    ],
+    "storyPunch": "Hilo ndilo tatizo AfyaTrust ilijengwa kulitatua.",
+    "storyClose": "Tunawaunganisha wafanyakazi wa sekta isiyo rasmi na kliniki zilizoingia mkataba, kwa bei zilizokubaliwa na zenye ukomo — na uanachama ulioundwa kuendana na jinsi watu wanavyopata kipato kihalisia. Hakuna malipo ya mkupuo. Hakuna cha kukushtukiza. Ni huduma ya afya inayotabirika, ya bei nafuu, iliyoundwa kwa maisha unayoishi.",
+    "quote": "Hatukuijenga AfyaTrust kutoka ofisini. Tuliijenga baada ya kuwaona watu tunaowajua — wachapakazi, wastahimilivu, wenye heshima — wakiporomoshwa kifedha na bili moja ya hospitali. Hilo halipaswi kumtokea yeyote anayeamka kila siku na kuchapa kazi kama wafanyakazi wa sekta isiyo rasmi wa Tanzania. AfyaTrust ni jibu letu kwa mfumo ambao haukuwahi kuundwa ukiwafikiria.",
+    "quoteAuthor": "Timu Waanzilishi wa AfyaTrust",
     "foundersCaption": "waanzilishi wenza, AfyaTrust.",
     "foundersAlt": "Waanzilishi wenza wa AfyaTrust",
-    "roles": ["Mwanzilishi Mwenza & Mkurugenzi Mtendaji", "Mwanzilishi Mwenza & Huduma"],
-    "teamEyebrow": "Timu yetu",
-    "teamTitle": "Timu ndogo, iliyo karibu na watu.",
+    "roles": [
+      "Mwanzilishi & Mkurugenzi Mtendaji, AfyaTrust",
+      "Mwanzilishi Mwenza, Meneja wa Masoko na Mahusiano ya Umma"
+    ],
+    "tags": [
+      ["Mjasiriamali wa Sekta ya Afya"],
+      ["Mtaalamu wa Maabara ya Afya", "Mkurugenzi wa Ubunifu", "Mtayarishaji wa Documentary"]
+    ],
+    "bios": [
+      [
+        "Johnson Thomson Daniel ni mjasiriamali wa sekta ya afya mwenye shauku ya kujenga suluhisho zinazofanya huduma za afya zipatikane kwa urahisi na kwa bei nafuu kwa jamii zisizofikiwa ipasavyo. Akikua, alishuhudia jinsi familia nyingi zinavyochelewesha au kuacha kabisa kutafuta matibabu — si kwa sababu hazithamini afya, bali kwa sababu haziwezi kumudu gharama za ghafla zinazokuja na ugonjwa.",
+        "Uzoefu huu ulimsukuma kujenga AfyaTrust — jukwaa la upatikanaji wa huduma za afya kwa njia ya uanachama, lililoundwa kuwasaidia wafanyakazi wa sekta isiyo rasmi na familia za kipato cha chini kupata matibabu ya nje bila mzigo wa gharama zisizotarajiwa. Johnson anaamini kuwa upatikanaji wa matibabu hautakiwi kutegemea kama ugonjwa umetokea kabla au baada ya siku ya mshahara."
+      ],
+      [
+        "Kazi yangu inaangazia nyakati za \"mashujaa wasioonekana\" katika sekta ya afya. Dar es Salaam, niliongoza kampeni ya ubunifu ya Changia Damu — harakati ya picha na sanaa iliyohamasisha watu kuwa wa kwanza kujitokeza kuchangia damu."
+      ]
+    ],
+    "teamEyebrow": "Uongozi",
+    "teamTitle": "Watu walio nyuma ya AfyaTrust.",
     "fieldEyebrow": "Uwandani",
     "fieldTitle": "Kila kifurushi tunachounda kinaanzia hapa — kusikiliza kwanza.",
     "fieldAlt": "Timu ya AfyaTrust ikizungumza na mfanyabiashara sokoni Kariakoo",
