@@ -1,11 +1,20 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Privacy Policy & Terms of Use — AfyaTrust",
   description:
     "AfyaTrust Tanzania Privacy Policy and Terms of Use. How we collect, use and protect member data, and the terms governing AfyaTrust membership.",
+  alternates: { canonical: "/legal" },
+  openGraph: {
+    title: "Privacy Policy & Terms of Use — AfyaTrust",
+    description:
+      "AfyaTrust Tanzania Privacy Policy and Terms of Use. How we collect, use and protect member data, and the terms governing AfyaTrust membership.",
+    url: "/legal",
+  },
 };
 
 // Legal copy is published verbatim as provided by AfyaTrust and is therefore
@@ -39,6 +48,12 @@ const B = ({ children }: { children: React.ReactNode }) => (
 export default function LegalPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Privacy Policy & Terms of Use", path: "/legal" },
+        ])}
+      />
       <Navbar />
       <main className="bg-white">
         <div className="container-page max-w-3xl pb-24 pt-36 sm:pt-44">
@@ -386,8 +401,8 @@ export default function LegalPage() {
               </a>
               <br />
               🌐{" "}
-              <a href="https://www.afyatrust.co.tz" className="font-600 text-teal hover:text-teal-deep">
-                www.afyatrust.co.tz
+              <a href="https://afyatrust.com" className="font-600 text-teal hover:text-teal-deep">
+                www.afyatrust.com
               </a>
             </p>
           </div>

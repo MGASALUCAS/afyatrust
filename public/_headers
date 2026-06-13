@@ -1,0 +1,22 @@
+# Netlify headers — security + caching. Non-visual; no effect on UI/UX.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Hashed build assets never change — safe to cache forever.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Media is cached for a week (filenames may be reused when photos are updated,
+# so do not mark immutable).
+/media/*
+  Cache-Control: public, max-age=604800
+
+/logo-white.png
+  Cache-Control: public, max-age=604800
+
+/logo-teal.png
+  Cache-Control: public, max-age=604800
