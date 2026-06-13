@@ -38,6 +38,9 @@ export const metadata: Metadata = {
   ],
   category: "healthcare",
   alternates: { canonical: "/" },
+  verification: {
+    google: "afBQNKcGePHCMfY7cYlXQjz4UdN92JURlWbttE250SU",
+  },
   openGraph: {
     type: "website",
     url: SITE_URL,
