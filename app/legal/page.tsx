@@ -5,12 +5,12 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy & Terms of Use — AfyaTrust",
+  title: "Privacy Policy & Terms of Use - AfyaTrust",
   description:
     "AfyaTrust Tanzania Privacy Policy and Terms of Use. How we collect, use and protect member data, and the terms governing AfyaTrust membership.",
   alternates: { canonical: "/legal" },
   openGraph: {
-    title: "Privacy Policy & Terms of Use — AfyaTrust",
+    title: "Privacy Policy & Terms of Use - AfyaTrust",
     description:
       "AfyaTrust Tanzania Privacy Policy and Terms of Use. How we collect, use and protect member data, and the terms governing AfyaTrust membership.",
     url: "/legal",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 // Legal copy is published verbatim as provided by AfyaTrust and is therefore
-// not run through the i18n layer — do not edit the wording here.
+// not run through the i18n layer - do not edit the wording here.
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -64,7 +64,7 @@ export default function LegalPage() {
             <B>Effective Date:</B> June 2026 · <B>Organization:</B> AfyaTrust Tanzania
           </p>
 
-          {/* ——— PART 1 ——— */}
+          {/* --- PART 1 --- */}
           <h2
             id="privacy"
             className="mt-14 scroll-mt-28 border-b border-line pb-4 font-display text-[26px] font-700 tracking-tight text-charcoal sm:text-[30px]"
@@ -132,17 +132,17 @@ export default function LegalPage() {
             <List
               items={[
                 <>
-                  <B>Contracted healthcare providers</B> — to verify your membership and
+                  <B>Contracted healthcare providers</B> - to verify your membership and
                   facilitate service delivery
                 </>,
                 <>
-                  <B>Mobile money partners</B> — to process membership fee payments
+                  <B>Mobile money partners</B> - to process membership fee payments
                 </>,
                 <>
-                  <B>Regulatory authorities</B> — where required by Tanzanian law
+                  <B>Regulatory authorities</B> - where required by Tanzanian law
                 </>,
                 <>
-                  <B>Research partners</B> — only in anonymized, aggregated form, never
+                  <B>Research partners</B> - only in anonymized, aggregated form, never
                   individually identifiable
                 </>,
               ]}
@@ -158,7 +158,7 @@ export default function LegalPage() {
             <List
               items={[
                 "Secure encrypted storage of all personal and health data",
-                "Restricted access — only authorized AfyaTrust staff can access member data",
+                "Restricted access - only authorized AfyaTrust staff can access member data",
                 "Regular security reviews of our systems and processes",
                 "Strict confidentiality agreements with all staff and partners",
               ]}
@@ -224,7 +224,7 @@ export default function LegalPage() {
             </p>
           </Section>
 
-          {/* ——— PART 2 ——— */}
+          {/* --- PART 2 --- */}
           <h2
             id="terms"
             className="mt-16 scroll-mt-28 border-b border-line pb-4 font-display text-[26px] font-700 tracking-tight text-charcoal sm:text-[30px]"
@@ -299,9 +299,9 @@ export default function LegalPage() {
           <Section title="6. Fair Use">
             <p>
               AfyaTrust operates on a capped usage model to ensure sustainability and fairness
-              across our membership. Members who are found to be abusing the system — including
+              across our membership. Members who are found to be abusing the system - including
               fraudulent use, misrepresentation, or exceeding agreed limits through dishonest
-              means — may have their membership suspended or terminated without refund.
+              means - may have their membership suspended or terminated without refund.
             </p>
           </Section>
 
@@ -378,7 +378,7 @@ export default function LegalPage() {
             </p>
           </Section>
 
-          {/* ——— Contact ——— */}
+          {/* --- Contact --- */}
           <h2 className="mt-16 scroll-mt-28 border-b border-line pb-4 font-display text-[26px] font-700 tracking-tight text-charcoal sm:text-[30px]">
             Contact Us
           </h2>

@@ -2,7 +2,7 @@
 
 import { LOCALES, useI18n, type Locale } from "@/lib/i18n";
 
-// Tiny inline flags — no extra image requests, crisp at any size.
+// Tiny inline flags - no extra image requests, crisp at any size.
 function TzFlag({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 16" className={className} aria-hidden>

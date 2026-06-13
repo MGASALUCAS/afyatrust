@@ -18,7 +18,7 @@ import BackgroundVideo from "./BackgroundVideo";
 type JourneyStep = { k: string; title: string; line: string };
 
 function StageVisual({ index, confirmedLabel }: { index: number; confirmedLabel: string }) {
-  // A distinct, purposeful visual per stage — no decoration for its own sake.
+  // A distinct, purposeful visual per stage - no decoration for its own sake.
   const reduce = useReducedMotion();
   const spring: Transition = { type: "spring", stiffness: 140, damping: 18 };
 
@@ -86,7 +86,7 @@ export default function Journey() {
           videoClassName="scale-[0.93]"
         />
         <div className="container-page relative z-10 grid w-full items-center gap-12 lg:grid-cols-2">
-          {/* Left — the words change as you scroll */}
+          {/* Left - the words change as you scroll */}
           <div>
             <span className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-sage">
               {t("journey.eyebrow")}
@@ -128,7 +128,7 @@ export default function Journey() {
             </div>
           </div>
 
-          {/* Right — the visual changes as you scroll */}
+          {/* Right - the visual changes as you scroll */}
           <div className="flex items-center justify-center">
             <div className="relative">
               <StageVisual index={active} confirmedLabel={t("journey.confirmed")} />

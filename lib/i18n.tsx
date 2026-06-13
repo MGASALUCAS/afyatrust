@@ -13,7 +13,7 @@ import en from "@/locales/en/common.json";
 import sw from "@/locales/sw/common.json";
 
 export type Locale = "en" | "sw";
-// Kiswahili first — it is the site's default language.
+// Kiswahili first - it is the site's default language.
 export const LOCALES: Locale[] = ["sw", "en"];
 export const DEFAULT_LOCALE: Locale = "sw";
 const STORAGE_KEY = "afyatrust.lang";
@@ -21,7 +21,7 @@ const STORAGE_KEY = "afyatrust.lang";
 type Dict = Record<string, unknown>;
 
 // Kiswahili (default) and English (fallback) both ship in the main bundle;
-// future languages lazy-load on demand — one JSON file + one loader line each.
+// future languages lazy-load on demand - one JSON file + one loader line each.
 const dictionaries: Partial<Record<Locale, Dict>> = {
   en: en as unknown as Dict,
   sw: sw as unknown as Dict,

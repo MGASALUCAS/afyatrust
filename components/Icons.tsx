@@ -1,5 +1,5 @@
 // Minimal, consistent line icons. One stroke weight, one style.
-// Used sparingly — only where an icon clarifies meaning.
+// Used sparingly - only where an icon clarifies meaning.
 import type { SVGProps } from "react";
 
 type IconProps = SVGProps<SVGSVGElement>;

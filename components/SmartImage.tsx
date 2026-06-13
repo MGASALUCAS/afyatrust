@@ -12,7 +12,7 @@ type SmartImageProps = {
   position?: string;
 };
 
-// Plain <img> with a branded fallback — so the page looks intentional
+// Plain <img> with a branded fallback - so the page looks intentional
 // even before the real photo is dropped into /public/media.
 export default function SmartImage({
   src,

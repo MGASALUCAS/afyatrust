@@ -6,7 +6,7 @@ import { WHATSAPP_LINK } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
 import { ArrowIcon } from "./Icons";
 
-// Fine film grain — the cinematic fallback if the videos ever fail to load.
+// Fine film grain - the cinematic fallback if the videos ever fail to load.
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E\")";
 
@@ -68,7 +68,7 @@ export default function Hero() {
       id="top"
       className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-teal-dark"
     >
-      {/* Layer 0 — cinematic fallback (always behind the video) */}
+      {/* Layer 0 - cinematic fallback (always behind the video) */}
       <motion.div style={{ scale: reduce ? 1 : scale }} className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_30%_20%,#0a7c86_0%,#005159_42%,#00343a_100%)]" />
         <div
@@ -78,8 +78,8 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* Layer 1 — the two alternating video slides (blurred backdrop + sharp HD).
-          Mobile: full-bleed background. Desktop: a framed media panel on the right —
+      {/* Layer 1 - the two alternating video slides (blurred backdrop + sharp HD).
+          Mobile: full-bleed background. Desktop: a framed media panel on the right -
           inset from the edges with a thin border, like a card sitting on the hero. */}
       {!failed && (
         <motion.div
@@ -92,7 +92,7 @@ export default function Hero() {
               className="absolute inset-0 transition-opacity duration-[1100ms] ease-out"
               style={{ opacity: active === i ? 1 : 0 }}
             >
-              {/* Blurred backdrop fills the wide screen — hides any letterboxing */}
+              {/* Blurred backdrop fills the wide screen - hides any letterboxing */}
               <video
                 ref={(el) => {
                   blurRefs.current[i] = el;
@@ -106,7 +106,7 @@ export default function Hero() {
                 <source src={src} type="video/mp4" />
               </video>
 
-              {/* Sharp, full-resolution layer — object-contain = no over-zoom, full HD */}
+              {/* Sharp, full-resolution layer - object-contain = no over-zoom, full HD */}
               <video
                 ref={(el) => {
                   sharpRefs.current[i] = el;
@@ -125,7 +125,7 @@ export default function Hero() {
         </motion.div>
       )}
 
-      {/* Layer 2 — legibility scrims. Mobile: full coverage. Desktop: left-only, so the
+      {/* Layer 2 - legibility scrims. Mobile: full coverage. Desktop: left-only, so the
           video on the right stays fully visible from the very top. */}
       <div className="absolute inset-0 bg-gradient-to-t from-teal-dark/90 via-teal-dark/35 to-teal-dark/55 lg:hidden" />
       <div className="absolute inset-0 bg-gradient-to-r from-teal-dark/85 via-teal-dark/25 to-transparent lg:from-teal-dark/90 lg:via-teal-dark/45 lg:via-38% lg:to-transparent lg:to-62%" />
@@ -208,7 +208,7 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Slide indicator — shows which film is playing, and lets you switch */}
+      {/* Slide indicator - shows which film is playing, and lets you switch */}
       {!failed && (
         <div className="absolute bottom-8 right-6 z-10 flex gap-2 sm:right-8 lg:bottom-14 lg:right-12">
           {SOURCES.map((src, i) => (

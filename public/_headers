@@ -1,4 +1,4 @@
-# Netlify headers — security + caching. Non-visual; no effect on UI/UX.
+# Netlify headers - security + caching. Non-visual; no effect on UI/UX.
 
 /*
   X-Content-Type-Options: nosniff
@@ -6,7 +6,7 @@
   X-Frame-Options: SAMEORIGIN
   Permissions-Policy: camera=(), microphone=(), geolocation=()
 
-# Hashed build assets never change — safe to cache forever.
+# Hashed build assets never change - safe to cache forever.
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
 

@@ -20,7 +20,7 @@ const manrope = Manrope({
   weight: ["600", "700"],
 });
 
-// Kiswahili is the site's default language — metadata follows it.
+// Kiswahili is the site's default language - metadata follows it.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: sw.meta.title,
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
         url: "/logo-teal.png",
         width: 702,
         height: 192,
-        alt: "AfyaTrust — Health Without Financial Shock",
+        alt: "AfyaTrust - Health Without Financial Shock",
       },
     ],
   },

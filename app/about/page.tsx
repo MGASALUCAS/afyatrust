@@ -4,12 +4,12 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema, founderSchemas } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "About — AfyaTrust",
+  title: "About - AfyaTrust",
   description:
-    "Why we started AfyaTrust: health protection for the riders, traders and families who keep Tanzania moving. Meet the founding team — Johnson Thomson Daniel and Hamidu Hafidhi Hassani.",
+    "Why we started AfyaTrust: health protection for the riders, traders and families who keep Tanzania moving. Meet the founding team - Johnson Thomson Daniel and Hamidu Hafidhi Hassani.",
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "About — AfyaTrust",
+    title: "About - AfyaTrust",
     description:
       "Why we started AfyaTrust: health protection for the riders, traders and families who keep Tanzania moving.",
     url: "/about",

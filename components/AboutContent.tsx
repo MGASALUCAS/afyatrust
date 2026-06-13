@@ -22,7 +22,7 @@ export default function AboutContent() {
     <>
       <Navbar />
       <main className="bg-white">
-        {/* 1 — Statement hero */}
+        {/* 1 - Statement hero */}
         <section className="container-page pb-20 pt-36 sm:pt-44">
           <Reveal>
             <span className="eyebrow">{t("about.eyebrow")}</span>
@@ -39,7 +39,7 @@ export default function AboutContent() {
           </Reveal>
         </section>
 
-        {/* 2 — Inspiration / co-founder note (founders portrait) */}
+        {/* 2 - Inspiration / co-founder note (founders portrait) */}
         <section className="section pt-4">
           <div className="container-page grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <Reveal>
@@ -53,7 +53,7 @@ export default function AboutContent() {
                   position="center 20%"
                 />
                 <figcaption className="mt-4 text-[13px] text-charcoal-faint">
-                  {founders.map((f) => f.name).join(" & ")} — {t("about.foundersCaption")}
+                  {founders.map((f) => f.name).join(" & ")} - {t("about.foundersCaption")}
                 </figcaption>
               </figure>
             </Reveal>
@@ -91,7 +91,7 @@ export default function AboutContent() {
                     &ldquo;{t("about.quote")}&rdquo;
                   </p>
                   <footer className="mt-4 text-[14px] font-600 text-charcoal">
-                    — {t("about.quoteAuthor")}
+                    - {t("about.quoteAuthor")}
                   </footer>
                 </blockquote>
               </Reveal>
@@ -99,7 +99,7 @@ export default function AboutContent() {
           </div>
         </section>
 
-        {/* 3 — The team / co-founders */}
+        {/* 3 - The team / co-founders */}
         <section className="section bg-sage-mist pt-0 sm:pt-0">
           <div className="container-page py-20 sm:py-24">
             <Reveal>
@@ -150,7 +150,7 @@ export default function AboutContent() {
           </div>
         </section>
 
-        {/* 4 — Team in the field (market photo) */}
+        {/* 4 - Team in the field (market photo) */}
         <section className="section">
           <div className="container-page">
             <Reveal>
@@ -180,7 +180,7 @@ export default function AboutContent() {
           </div>
         </section>
 
-        {/* 5 — What we believe */}
+        {/* 5 - What we believe */}
         <section className="section bg-sage-mist">
           <div className="container-page">
             <Reveal>
@@ -202,7 +202,7 @@ export default function AboutContent() {
           </div>
         </section>
 
-        {/* 6 — CTA */}
+        {/* 6 - CTA */}
         <section className="section">
           <div className="container-page">
             <Reveal>

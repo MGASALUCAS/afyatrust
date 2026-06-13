@@ -1,4 +1,4 @@
-// Central SEO configuration — single source of truth for the canonical domain,
+// Central SEO configuration - single source of truth for the canonical domain,
 // shared metadata values and Schema.org structured data.
 //
 // afyatrust.com is the official production domain. If it ever changes, update
@@ -9,7 +9,7 @@ export const SITE_NAME = "AfyaTrust";
 
 const LOGO_URL = `${SITE_URL}/logo-teal.png`;
 
-// English used for structured data — the audience search engines serve most
+// English used for structured data - the audience search engines serve most
 // widely; the on-page content itself is bilingual (sw default, en toggle).
 const ORG_DESCRIPTION =
   "AfyaTrust is a membership-based health access platform connecting informal workers in Tanzania to contracted healthcare providers at negotiated, capped prices. Affordable monthly health memberships for riders, traders, vendors and families.";

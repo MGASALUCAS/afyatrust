@@ -9,7 +9,7 @@ import Counter from "./motion/Counter";
 
 type Story = { quote: string; name: string; role: string };
 
-// A growing community network — nodes connect to a central clinic as it comes into view.
+// A growing community network - nodes connect to a central clinic as it comes into view.
 function NetworkViz() {
   const ref = useRef<SVGSVGElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });

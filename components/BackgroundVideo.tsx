@@ -36,7 +36,7 @@ export default function BackgroundVideo({
       >
         <source src={src} type="video/mp4" />
       </video>
-      {/* Sharp layer at the video's natural aspect ratio — no cropping, no zoom */}
+      {/* Sharp layer at the video's natural aspect ratio - no cropping, no zoom */}
       <video
         className={`absolute inset-0 h-full w-full object-contain ${videoClassName}`}
         autoPlay

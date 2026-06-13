@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Brand palette — disciplined: 3 brand colors + base
+        // Brand palette - disciplined: 3 brand colors + base
         teal: {
           DEFAULT: "#006D77",
           deep: "#005159",

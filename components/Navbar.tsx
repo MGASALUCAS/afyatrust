@@ -13,7 +13,7 @@ function Logo({ light }: { light: boolean }) {
     <a href="#top" className="flex items-center">
       <Image
         src={light ? "/logo-white.png" : "/logo-teal.png"}
-        alt="AfyaTrust — Health without financial shock"
+        alt="AfyaTrust - Health without financial shock"
         width={702}
         height={192}
         priority

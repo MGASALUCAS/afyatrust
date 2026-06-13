@@ -1,4 +1,4 @@
-// Server-rendered JSON-LD structured data. Invisible to users — exists purely
+// Server-rendered JSON-LD structured data. Invisible to users - exists purely
 // for search engine understanding (rich results, knowledge panel, breadcrumbs).
 export default function JsonLd({ data }: { data: object }) {
   return (

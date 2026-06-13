@@ -16,11 +16,11 @@ export default function Footer() {
     <footer className="bg-teal-dark">
       <div className="container-page py-16">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
-          {/* Brand — white wordmark on the brand-dark background */}
+          {/* Brand - white wordmark on the brand-dark background */}
           <div>
             <Image
               src="/logo-white.png"
-              alt="AfyaTrust — Health without financial shock"
+              alt="AfyaTrust - Health without financial shock"
               width={702}
               height={192}
               className="h-12 w-auto"

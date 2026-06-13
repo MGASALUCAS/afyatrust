@@ -1,11 +1,11 @@
-// i18n quality gate — run with: npm run i18n:check
+// i18n quality gate - run with: npm run i18n:check
 //
 // Verifies, for every locale against English (the reference):
-//   1. Structure parity  — no missing or extra keys (no untranslated screens).
-//   2. No empty strings  — every key has real content.
-//   3. No untranslated copy — values identical to English are flagged unless
+//   1. Structure parity  - no missing or extra keys (no untranslated screens).
+//   2. No empty strings  - every key has real content.
+//   3. No untranslated copy - values identical to English are flagged unless
 //      they are structural (hrefs, numbers) or allowlisted brand/proper nouns.
-//   4. Placeholder consistency — {tokens} used in EN must survive translation.
+//   4. Placeholder consistency - {tokens} used in EN must survive translation.
 
 import { readFileSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";

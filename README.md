@@ -1,6 +1,6 @@
 # AfyaTrust
 
-Health protection for everyday Tanzanians — a clean, trustworthy, single-page
+Health protection for everyday Tanzanians - a clean, trustworthy, single-page
 membership website built with **Next.js (App Router)** and **Tailwind CSS**.
 
 > Health Without Financial Shock.
@@ -10,7 +10,7 @@ membership website built with **Next.js (App Router)** and **Tailwind CSS**.
 - Next.js 14 (App Router, JavaScript)
 - Tailwind CSS 3
 - Inter + Manrope (via `next/font`)
-- Zero external UI libraries — all components and icons are hand-built
+- Zero external UI libraries - all components and icons are hand-built
 
 ## Getting started
 
@@ -37,7 +37,7 @@ app/
   page.js          Page composition
   globals.css      Tailwind layers + brand button styles
 components/        Navbar, Hero, HowItWorks, Packages, WhyAfyaTrust, Trust, Contact, Footer, Icons
-lib/content.js    All copy, packages, stats — single source of truth
+lib/content.js    All copy, packages, stats - single source of truth
 tailwind.config.js  Brand palette (Teal / Sage / Gold)
 ```
 
@@ -51,5 +51,5 @@ tailwind.config.js  Brand palette (Teal / Sage / Gold)
 | Charcoal  | `#1A1A1A` |
 | Surface   | `#FFFFFF` |
 
-Edit content in [`lib/content.js`](lib/content.js) — packages, WhatsApp number,
+Edit content in [`lib/content.js`](lib/content.js) - packages, WhatsApp number,
 member stories and stats all live there.

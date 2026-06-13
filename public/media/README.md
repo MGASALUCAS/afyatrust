@@ -2,7 +2,7 @@
 
 The homepage hero is built to play **real documentary footage**.
 
-Drop two files in this folder and the hero uses them automatically — no code change:
+Drop two files in this folder and the hero uses them automatically - no code change:
 
 | File              | What it is                                  | Recommended specs                        |
 | ----------------- | ------------------------------------------- | ---------------------------------------- |
@@ -11,7 +11,7 @@ Drop two files in this folder and the hero uses them automatically — no code c
 
 ## What to shoot
 
-Authentic, documentary-style, natural light — **not** corporate stock:
+Authentic, documentary-style, natural light - **not** corporate stock:
 
 - A boda boda rider starting the day
 - A market trader opening a stall

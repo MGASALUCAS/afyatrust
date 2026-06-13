@@ -1,7 +1,7 @@
 // Structural data only (prices, links, names, numbers).
 // All translatable copy lives in /locales/{en,sw}/common.json.
 
-// Official brand lines — used in metadata (the default, English).
+// Official brand lines - used in metadata (the default, English).
 export const TAGLINE = "Health Without Financial Shock";
 export const TAGLINE_SUB = "Built for informal workers & families in Tanzania";
 
@@ -10,7 +10,7 @@ export const WHATSAPP_LINK =
   "https://wa.me/255687331494?text=" +
   encodeURIComponent("Hi AfyaTrust, I would like to join.");
 
-// Leadership — names and photos here; roles, expertise tags and bios are
+// Leadership - names and photos here; roles, expertise tags and bios are
 // translated in the locale files (about.roles / about.tags / about.bios, same order).
 export type Founder = { name: string; img: string };
 
