@@ -80,7 +80,7 @@
     "stats": ["Members protected", "Clinic visits", "Partner clinics", "Uptime goal"],
     "stories": [
       { "quote": "I ride every day. Now a clinic visit won't empty my pocket.", "name": "Juma", "role": "Rider · Dar es Salaam" },
-      { "quote": "My family's health used to be my biggest worry. Now it's handled.", "name": "Neema", "role": "Trader · Mwanza" }
+      { "quote": "My family's health used to be my biggest worry. Now it's handled.", "name": "Neema", "role": "Trader · Dar es salaam:" }
     ]
   },
   "contact": {
