@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useAnimationFrame, useInView, useReducedMotion } from "framer-motion";
 import { stats } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
@@ -9,38 +9,83 @@ import Counter from "./motion/Counter";
 
 type Story = { quote: string; name: string; role: string };
 
-// Real wards across Dar es Salaam that the network reaches. Members are
-// illustrative figures used to make each node feel alive on hover.
+// Real wards across Dar es Salaam that the network reaches. `members` is also
+// the number of people-dots scattered into each region's heatmap cluster, kept
+// between 80-100 per ward. The headline network total is shown as 500+.
 const MAP_LOCATIONS = [
-  { name: "Kinondoni", members: "1,240" },
-  { name: "Mwananyamala", members: "980" },
-  { name: "Mbezi Beach", members: "760" },
-  { name: "Temeke", members: "890" },
-  { name: "Tandika", members: "1,050" },
+  { name: "Kinondoni", members: 100 },
+  { name: "Mwananyamala", members: 92 },
+  { name: "Mbezi Beach", members: 86 },
+  { name: "Temeke", members: 88 },
+  { name: "Tandika", members: 96 },
 ] as const;
+
+const TOTAL_MEMBERS = "500+";
+const CLINIC_COUNT = 7;
 
 const CENTER = 50;
 const ORBIT_R = 30; // radius of the orbit, in viewBox units (0-100)
+const CLUSTER_R = 8.5; // heatmap blob radius around each ward
 const N = MAP_LOCATIONS.length;
 
-// An interactive, slowly rotating map: clinics orbit a central hub while a
-// radar sweep passes over them. Hover (or tap) a ward to focus it; the map
-// pauses so it stays readable. Auto-cycles through wards when left alone.
+// Small deterministic PRNG so the random scatter is identical on the server and
+// the client - avoids React hydration mismatches from Math.random().
+function mulberry32(seed: number) {
+  return () => {
+    seed |= 0;
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+type Dot = { x: number; y: number; r: number; o: number };
+type WardGeo = { name: string; members: number; nx: number; ny: number; dots: Dot[] };
+
+// Computed once at module load (deterministic) - the node positions and the
+// per-ward cloud of people-dots that make up the heatmap.
+const GEO: WardGeo[] = MAP_LOCATIONS.map((loc, i) => {
+  const rad = (((360 / N) * i - 90) * Math.PI) / 180;
+  const nx = CENTER + ORBIT_R * Math.cos(rad);
+  const ny = CENTER + ORBIT_R * Math.sin(rad);
+  const rng = mulberry32(1000 + i * 137);
+  const dots: Dot[] = Array.from({ length: loc.members }, () => {
+    const t = rng() * Math.PI * 2;
+    const dist = Math.sqrt(rng()) * CLUSTER_R; // sqrt => denser toward the centre
+    return {
+      x: nx + dist * Math.cos(t),
+      y: ny + dist * Math.sin(t),
+      r: 0.42 + rng() * 0.34,
+      o: 0.3 + rng() * 0.45,
+    };
+  });
+  return { name: loc.name, members: loc.members, nx, ny, dots };
+});
+
+// An interactive, slowly rotating map: wards orbit a central clinic hub while a
+// radar sweep passes over a live heatmap of members. Hover (or tap) a ward to
+// focus it; the map pauses so it stays readable. Rotation, sweep and label
+// positions are driven imperatively (refs) so hundreds of dots never trigger a
+// React re-render. Auto-cycles through wards when left alone.
 function RotatingMap() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const reduce = useReducedMotion();
 
-  const [rotation, setRotation] = useState(reduce ? 0 : -8);
   const [hovered, setHovered] = useState<number | null>(null);
-  const [paused, setPaused] = useState(false);
   const [autoIndex, setAutoIndex] = useState(0);
 
-  // Continuous, frame-rate-independent rotation of the whole orbit.
-  useAnimationFrame((_, delta) => {
-    if (reduce || paused || !inView) return;
-    setRotation((r) => (r + delta * 0.0055) % 360);
-  });
+  const orbitRef = useRef<SVGGElement>(null);
+  const sweepRef = useRef<SVGGElement>(null);
+  const labelRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const angleRef = useRef(-8);
+  const pausedRef = useRef(false);
+  const inViewRef = useRef(false);
+
+  useEffect(() => {
+    inViewRef.current = inView;
+  }, [inView]);
 
   // Gently cycle the focused ward when the user isn't interacting.
   useEffect(() => {
@@ -49,38 +94,81 @@ function RotatingMap() {
     return () => window.clearInterval(id);
   }, [reduce, hovered]);
 
+  // Single rAF loop: advance the angle and push it to the DOM imperatively.
+  useAnimationFrame((_, delta) => {
+    if (!reduce && !pausedRef.current && inViewRef.current) {
+      angleRef.current = (angleRef.current + delta * 0.0055) % 360;
+    }
+    const a = reduce ? 0 : angleRef.current;
+    orbitRef.current?.setAttribute("transform", `rotate(${a} ${CENTER} ${CENTER})`);
+    sweepRef.current?.setAttribute("transform", `rotate(${(a * 2) % 360} ${CENTER} ${CENTER})`);
+
+    // Keep the HTML labels glued to their (rotating) nodes but always upright.
+    const cos = Math.cos((a * Math.PI) / 180);
+    const sin = Math.sin((a * Math.PI) / 180);
+    for (let i = 0; i < GEO.length; i++) {
+      const el = labelRefs.current[i];
+      if (!el) continue;
+      const dx = GEO[i].nx - CENTER;
+      const dy = GEO[i].ny - CENTER;
+      el.style.left = `${CENTER + dx * cos - dy * sin}%`;
+      el.style.top = `${CENTER + dx * sin + dy * cos}%`;
+    }
+  });
+
   const active = hovered ?? autoIndex;
 
-  const positions = MAP_LOCATIONS.map((_, i) => {
-    const a = ((rotation + (360 / N) * i - 90) * Math.PI) / 180;
-    return { x: CENTER + ORBIT_R * Math.cos(a), y: CENTER + ORBIT_R * Math.sin(a) };
-  });
+  // Heatmap dots never depend on `active`, so memoise them - they render once
+  // and simply ride along with the orbit group's transform.
+  const heatmap = useMemo(
+    () =>
+      GEO.map((g, i) => (
+        <g key={`dots-${i}`}>
+          {g.dots.map((d, k) => (
+            <circle key={k} cx={d.x} cy={d.y} r={d.r} fill="#5BA39B" opacity={d.o} />
+          ))}
+        </g>
+      )),
+    [],
+  );
 
   return (
     <div
       ref={ref}
       className="relative mx-auto aspect-square h-full select-none"
-      onPointerEnter={() => setPaused(true)}
+      onPointerEnter={() => {
+        pausedRef.current = true;
+      }}
       onPointerLeave={() => {
-        setPaused(false);
+        pausedRef.current = false;
         setHovered(null);
       }}
     >
       <svg viewBox="0 0 100 100" className="h-full w-full overflow-visible">
         <defs>
-          <radialGradient id="map-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#83C5BE" stopOpacity="0.28" />
-            <stop offset="70%" stopColor="#83C5BE" stopOpacity="0.06" />
+          <radialGradient id="map-bg" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#83C5BE" stopOpacity="0.22" />
+            <stop offset="70%" stopColor="#83C5BE" stopOpacity="0.05" />
             <stop offset="100%" stopColor="#83C5BE" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="cluster-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#83C5BE" stopOpacity="0.55" />
+            <stop offset="60%" stopColor="#83C5BE" stopOpacity="0.16" />
+            <stop offset="100%" stopColor="#83C5BE" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="cluster-active" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#FFB703" stopOpacity="0.5" />
+            <stop offset="55%" stopColor="#006D77" stopOpacity="0.22" />
+            <stop offset="100%" stopColor="#006D77" stopOpacity="0" />
           </radialGradient>
           <linearGradient id="map-sweep" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="#006D77" stopOpacity="0" />
-            <stop offset="100%" stopColor="#006D77" stopOpacity="0.18" />
+            <stop offset="100%" stopColor="#006D77" stopOpacity="0.16" />
           </linearGradient>
         </defs>
 
         {/* soft background glow + radar rings */}
-        <circle cx={CENTER} cy={CENTER} r="46" fill="url(#map-glow)" />
+        <circle cx={CENTER} cy={CENTER} r="46" fill="url(#map-bg)" />
         {[14, 24, 34, 44].map((r) => (
           <circle
             key={r}
@@ -90,7 +178,7 @@ function RotatingMap() {
             fill="none"
             stroke="#83C5BE"
             strokeWidth="0.3"
-            strokeOpacity="0.35"
+            strokeOpacity="0.3"
           />
         ))}
         {/* faint crosshair grid */}
@@ -98,13 +186,13 @@ function RotatingMap() {
           d={`M${CENTER} 6V94M6 ${CENTER}H94`}
           stroke="#83C5BE"
           strokeWidth="0.3"
-          strokeOpacity="0.3"
+          strokeOpacity="0.28"
           strokeDasharray="1 2"
         />
 
         {/* rotating radar sweep */}
         {!reduce && (
-          <g style={{ transform: `rotate(${rotation * 2}deg)`, transformOrigin: "50px 50px" }}>
+          <g ref={sweepRef}>
             <path
               d={`M${CENTER} ${CENTER} L${CENTER} 6 A44 44 0 0 1 ${CENTER + 34} 18 Z`}
               fill="url(#map-sweep)"
@@ -112,64 +200,69 @@ function RotatingMap() {
           </g>
         )}
 
-        {/* connector lines from hub to each ward */}
-        {positions.map((p, i) => (
-          <motion.line
-            key={`l-${i}`}
-            x1={CENTER}
-            y1={CENTER}
-            x2={p.x}
-            y2={p.y}
-            stroke={i === active ? "#006D77" : "#83C5BE"}
-            strokeWidth={i === active ? 0.9 : 0.5}
-            strokeOpacity={i === active ? 0.9 : 0.45}
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={inView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: reduce ? 0 : 0.7, delay: reduce ? 0 : 0.2 + i * 0.08 }}
-          />
-        ))}
-
-        {/* ward nodes */}
-        {positions.map((p, i) => (
-          <g key={`n-${i}`}>
-            {i === active && !reduce && (
-              <motion.circle
-                cx={p.x}
-                cy={p.y}
-                fill="none"
-                stroke="#006D77"
-                strokeWidth="0.6"
-                initial={{ r: 2, opacity: 0.6 }}
-                animate={{ r: [2, 6.5], opacity: [0.6, 0] }}
-                transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
-              />
-            )}
-            <motion.circle
-              cx={p.x}
-              cy={p.y}
-              r={i === active ? 2.6 : 1.9}
-              fill={i === active ? "#006D77" : "#FFFFFF"}
-              stroke="#006D77"
-              strokeWidth="0.7"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={inView ? { scale: 1, opacity: 1 } : {}}
-              transition={{ type: "spring", stiffness: 220, damping: 16, delay: reduce ? 0 : 0.3 + i * 0.08 }}
-              style={{ transformOrigin: `${p.x}px ${p.y}px` }}
+        {/* everything that orbits the hub - rotated imperatively as one group */}
+        <g ref={orbitRef} style={{ opacity: inView ? 1 : 0, transition: "opacity 0.8s ease" }}>
+          {/* per-ward heatmap glow */}
+          {GEO.map((g, i) => (
+            <circle
+              key={`glow-${i}`}
+              cx={g.nx}
+              cy={g.ny}
+              r="11"
+              fill={i === active ? "url(#cluster-active)" : "url(#cluster-glow)"}
+              opacity={i === active ? 1 : 0.6}
+              className="transition-opacity duration-500"
             />
-          </g>
-        ))}
+          ))}
 
-        {/* central clinic hub */}
-        <motion.circle
-          cx={CENTER}
-          cy={CENTER}
-          r="6.5"
-          fill="#006D77"
-          initial={{ scale: 0 }}
-          animate={inView ? { scale: 1 } : {}}
-          transition={{ type: "spring", stiffness: 200, damping: 15 }}
-          style={{ transformOrigin: "50px 50px" }}
-        />
+          {/* the heatmap people-dots */}
+          {heatmap}
+
+          {/* connector lines from hub to each ward */}
+          {GEO.map((g, i) => (
+            <line
+              key={`conn-${i}`}
+              x1={CENTER}
+              y1={CENTER}
+              x2={g.nx}
+              y2={g.ny}
+              stroke={i === active ? "#006D77" : "#83C5BE"}
+              strokeWidth={i === active ? 0.9 : 0.45}
+              strokeOpacity={i === active ? 0.9 : 0.4}
+              className="transition-all duration-300"
+            />
+          ))}
+
+          {/* ward nodes */}
+          {GEO.map((g, i) => (
+            <g key={`node-${i}`}>
+              {i === active && !reduce && (
+                <motion.circle
+                  cx={g.nx}
+                  cy={g.ny}
+                  fill="none"
+                  stroke="#006D77"
+                  strokeWidth="0.6"
+                  initial={{ r: 2.4, opacity: 0.55 }}
+                  animate={{ r: [2.4, 7.5], opacity: [0.55, 0] }}
+                  transition={{ duration: 1.7, repeat: Infinity, ease: "easeOut" }}
+                />
+              )}
+              <circle
+                cx={g.nx}
+                cy={g.ny}
+                r={i === active ? 2.7 : 2}
+                fill={i === active ? "#006D77" : "#FFFFFF"}
+                stroke="#006D77"
+                strokeWidth="0.7"
+                className="transition-all duration-300"
+              />
+            </g>
+          ))}
+        </g>
+
+        {/* central clinic hub (sits still at the centre) */}
+        <circle cx={CENTER} cy={CENTER} r="6.5" fill="#006D77" />
         <circle cx={CENTER} cy={CENTER} r="6.5" fill="none" stroke="#FFB703" strokeWidth="0.5" strokeOpacity="0.6" />
         <path
           d={`M${CENTER} ${CENTER - 2.6}v5.2M${CENTER - 2.6} ${CENTER}h5.2`}
@@ -180,30 +273,35 @@ function RotatingMap() {
       </svg>
 
       {/* upright, interactive ward labels following each node */}
-      {positions.map((p, i) => {
+      {GEO.map((g, i) => {
         const isActive = i === active;
         return (
           <button
             type="button"
             key={`lab-${i}`}
-            onPointerEnter={() => setHovered(i)}
+            ref={(el) => {
+              labelRefs.current[i] = el;
+            }}
+            onPointerEnter={() => {
+              setHovered(i);
+              pausedRef.current = true;
+            }}
             onFocus={() => {
               setHovered(i);
-              setPaused(true);
+              pausedRef.current = true;
             }}
             onBlur={() => {
               setHovered(null);
-              setPaused(false);
+              pausedRef.current = false;
             }}
             className={`absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border px-2 py-[3px] text-[11px] font-600 leading-none shadow-card transition-colors duration-300 ${
               isActive
                 ? "z-10 border-teal bg-teal text-white"
                 : "border-line bg-white/95 text-charcoal-muted hover:border-sage"
             }`}
-            style={{ left: `${p.x}%`, top: `${p.y}%` }}
-            aria-label={`${MAP_LOCATIONS[i].name} — ${MAP_LOCATIONS[i].members} wanachama`}
+            aria-label={`${g.name} — ${g.members} wanachama`}
           >
-            {MAP_LOCATIONS[i].name}
+            {g.name}
           </button>
         );
       })}
@@ -216,12 +314,8 @@ function RotatingMap() {
           )}
           <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
         </span>
-        <span className="text-[12px] font-600 text-charcoal">
-          {MAP_LOCATIONS[active].name}
-        </span>
-        <span className="text-[12px] text-charcoal-faint">
-          {MAP_LOCATIONS[active].members} wanachama
-        </span>
+        <span className="text-[12px] font-600 text-charcoal">{GEO[active].name}</span>
+        <span className="text-[12px] text-charcoal-faint">{GEO[active].members} wanachama</span>
       </div>
     </div>
   );
@@ -265,9 +359,19 @@ export default function Impact() {
 
           {/* Network visual */}
           <div className="rounded-xl2 border border-line bg-white p-6 shadow-card">
-            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-charcoal-faint">
-              {t("impact.network")}
-            </p>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-charcoal-faint">
+                {t("impact.network")}
+              </p>
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-sage-soft px-2.5 py-1 text-[12px] font-700 text-teal">
+                  {TOTAL_MEMBERS} <span className="font-600 text-teal-deep/80">wanachama</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-gold-soft px-2.5 py-1 text-[12px] font-700 text-teal">
+                  {CLINIC_COUNT} <span className="font-600 text-teal-deep/80">kliniki</span>
+                </span>
+              </div>
+            </div>
             <div className="mt-2 h-[260px]">
               <RotatingMap />
             </div>

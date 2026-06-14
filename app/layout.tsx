@@ -38,6 +38,9 @@ export const metadata: Metadata = {
   ],
   category: "healthcare",
   alternates: { canonical: "/" },
+  // Stop browsers/Google from auto-translating over our own SW/EN system.
+  // Visitors can still translate manually if they choose to.
+  other: { google: "notranslate" },
   verification: {
     google: "afBQNKcGePHCMfY7cYlXQjz4UdN92JURlWbttE250SU",
   },
@@ -79,7 +82,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="sw" className={`${inter.variable} ${manrope.variable}`}>
+    <html lang="sw" translate="no" className={`notranslate ${inter.variable} ${manrope.variable}`}>
       <body>
         <JsonLd data={organizationSchema} />
         <JsonLd data={webSiteSchema} />
