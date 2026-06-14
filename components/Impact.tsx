@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useAnimationFrame, useInView, useReducedMotion } from "framer-motion";
 import { stats } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
@@ -9,9 +9,8 @@ import Counter from "./motion/Counter";
 
 type Story = { quote: string; name: string; role: string };
 
-// Real wards across Dar es Salaam that the network reaches. `members` is also
-// the number of people-dots scattered into each region's heatmap cluster, kept
-// between 80-100 per ward. The headline network total is shown as 500+.
+// Real wards across Dar es Salaam that the network reaches. `members` is the
+// figure shown when a ward is focused; the headline network total is 500+.
 const MAP_LOCATIONS = [
   { name: "Kinondoni", members: 100 },
   { name: "Mwananyamala", members: 92 },
@@ -25,42 +24,19 @@ const CLINIC_COUNT = 7;
 
 const CENTER = 50;
 const ORBIT_R = 30; // radius of the orbit, in viewBox units (0-100)
-const CLUSTER_R = 8.5; // heatmap blob radius around each ward
 const N = MAP_LOCATIONS.length;
 
-// Small deterministic PRNG so the random scatter is identical on the server and
-// the client - avoids React hydration mismatches from Math.random().
-function mulberry32(seed: number) {
-  return () => {
-    seed |= 0;
-    seed = (seed + 0x6d2b79f5) | 0;
-    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
+type WardGeo = { name: string; members: number; nx: number; ny: number };
 
-type Dot = { x: number; y: number; r: number; o: number };
-type WardGeo = { name: string; members: number; nx: number; ny: number; dots: Dot[] };
-
-// Computed once at module load (deterministic) - the node positions and the
-// per-ward cloud of people-dots that make up the heatmap.
+// Node positions around the orbit, computed once at module load.
 const GEO: WardGeo[] = MAP_LOCATIONS.map((loc, i) => {
   const rad = (((360 / N) * i - 90) * Math.PI) / 180;
-  const nx = CENTER + ORBIT_R * Math.cos(rad);
-  const ny = CENTER + ORBIT_R * Math.sin(rad);
-  const rng = mulberry32(1000 + i * 137);
-  const dots: Dot[] = Array.from({ length: loc.members }, () => {
-    const t = rng() * Math.PI * 2;
-    const dist = Math.sqrt(rng()) * CLUSTER_R; // sqrt => denser toward the centre
-    return {
-      x: nx + dist * Math.cos(t),
-      y: ny + dist * Math.sin(t),
-      r: 0.42 + rng() * 0.34,
-      o: 0.3 + rng() * 0.45,
-    };
-  });
-  return { name: loc.name, members: loc.members, nx, ny, dots };
+  return {
+    name: loc.name,
+    members: loc.members,
+    nx: CENTER + ORBIT_R * Math.cos(rad),
+    ny: CENTER + ORBIT_R * Math.sin(rad),
+  };
 });
 
 // An interactive, slowly rotating map: wards orbit a central clinic hub while a
@@ -118,20 +94,6 @@ function RotatingMap() {
 
   const active = hovered ?? autoIndex;
 
-  // Heatmap dots never depend on `active`, so memoise them - they render once
-  // and simply ride along with the orbit group's transform.
-  const heatmap = useMemo(
-    () =>
-      GEO.map((g, i) => (
-        <g key={`dots-${i}`}>
-          {g.dots.map((d, k) => (
-            <circle key={k} cx={d.x} cy={d.y} r={d.r} fill="#5BA39B" opacity={d.o} />
-          ))}
-        </g>
-      )),
-    [],
-  );
-
   return (
     <div
       ref={ref}
@@ -150,16 +112,6 @@ function RotatingMap() {
             <stop offset="0%" stopColor="#83C5BE" stopOpacity="0.22" />
             <stop offset="70%" stopColor="#83C5BE" stopOpacity="0.05" />
             <stop offset="100%" stopColor="#83C5BE" stopOpacity="0" />
-          </radialGradient>
-          <radialGradient id="cluster-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#83C5BE" stopOpacity="0.55" />
-            <stop offset="60%" stopColor="#83C5BE" stopOpacity="0.16" />
-            <stop offset="100%" stopColor="#83C5BE" stopOpacity="0" />
-          </radialGradient>
-          <radialGradient id="cluster-active" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#FFB703" stopOpacity="0.5" />
-            <stop offset="55%" stopColor="#006D77" stopOpacity="0.22" />
-            <stop offset="100%" stopColor="#006D77" stopOpacity="0" />
           </radialGradient>
           <linearGradient id="map-sweep" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="#006D77" stopOpacity="0" />
@@ -202,22 +154,6 @@ function RotatingMap() {
 
         {/* everything that orbits the hub - rotated imperatively as one group */}
         <g ref={orbitRef} style={{ opacity: inView ? 1 : 0, transition: "opacity 0.8s ease" }}>
-          {/* per-ward heatmap glow */}
-          {GEO.map((g, i) => (
-            <circle
-              key={`glow-${i}`}
-              cx={g.nx}
-              cy={g.ny}
-              r="11"
-              fill={i === active ? "url(#cluster-active)" : "url(#cluster-glow)"}
-              opacity={i === active ? 1 : 0.6}
-              className="transition-opacity duration-500"
-            />
-          ))}
-
-          {/* the heatmap people-dots */}
-          {heatmap}
-
           {/* connector lines from hub to each ward */}
           {GEO.map((g, i) => (
             <line
