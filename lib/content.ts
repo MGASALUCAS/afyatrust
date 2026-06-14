@@ -42,6 +42,6 @@ export type Stat = { value: number; suffix: string; label: string };
 export const stats: Stat[] = [
   { value: 500, suffix: "+", label: "Members protected" },
   { value: 300, suffix: "+", label: "Clinic visits" },
-  { value: 12, suffix: "", label: "Partner clinics" },
+  { value: 7, suffix: "", label: "Partner clinics" },
   { value: 99.5, suffix: "%", label: "Uptime goal" },
 ];
