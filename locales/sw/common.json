@@ -77,6 +77,8 @@
     "title": "Zaidi ya matibabu",
     "sub": "Kila uanachama unalinda kipato cha mtu. Huu ndio mtandao tunaoujenga.",
     "network": "Mtandao unaokua",
+    "memberLabel": "wanachama",
+    "clinicLabel": "kliniki",
     "stats": ["Wanachama wanaolindwa", "Mahudhurio kliniki", "Kliniki washirika", "Uhakika wa huduma"],
     "stories": [
       { "quote": "Naendesha bodaboda kila siku. Sasa kwenda kliniki hakunimalizii mfuko.", "name": "Juma", "role": "Bodaboda · Dar es Salaam" },

@@ -45,6 +45,7 @@ const GEO: WardGeo[] = MAP_LOCATIONS.map((loc, i) => {
 // positions are driven imperatively (refs) so hundreds of dots never trigger a
 // React re-render. Auto-cycles through wards when left alone.
 function RotatingMap() {
+  const { t } = useI18n();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const reduce = useReducedMotion();
@@ -235,7 +236,7 @@ function RotatingMap() {
                 ? "z-10 border-teal bg-teal text-white"
                 : "border-line bg-white/95 text-charcoal-muted hover:border-sage"
             }`}
-            aria-label={`${g.name} — ${g.members} wanachama`}
+            aria-label={`${g.name} — ${g.members} ${t("impact.memberLabel")}`}
           >
             {g.name}
           </button>
@@ -251,7 +252,9 @@ function RotatingMap() {
           <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
         </span>
         <span className="text-[12px] font-600 text-charcoal">{GEO[active].name}</span>
-        <span className="text-[12px] text-charcoal-faint">{GEO[active].members} wanachama</span>
+        <span className="text-[12px] text-charcoal-faint">
+          {GEO[active].members} {t("impact.memberLabel")}
+        </span>
       </div>
     </div>
   );
@@ -301,10 +304,10 @@ export default function Impact() {
               </p>
               <div className="flex items-center gap-2">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-sage-soft px-2.5 py-1 text-[12px] font-700 text-teal">
-                  {TOTAL_MEMBERS} <span className="font-600 text-teal-deep/80">wanachama</span>
+                  {TOTAL_MEMBERS} <span className="font-600 text-teal-deep/80">{t("impact.memberLabel")}</span>
                 </span>
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-gold-soft px-2.5 py-1 text-[12px] font-700 text-teal">
-                  {CLINIC_COUNT} <span className="font-600 text-teal-deep/80">kliniki</span>
+                  {CLINIC_COUNT} <span className="font-600 text-teal-deep/80">{t("impact.clinicLabel")}</span>
                 </span>
               </div>
             </div>
