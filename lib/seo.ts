@@ -80,7 +80,7 @@ export const founderSchemas = [
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": `${SITE_URL}/about#hamidu`,
-    name: "Hamidu Hafidhi Hassani",
+    name: "Hamidu Hafidhihi Hassani",
     jobTitle: "Co-Founder, Marketing & Public Relations Manager",
     image: `${SITE_URL}/media/hamidu-marketing.jpeg`,
     worksFor: { "@id": `${SITE_URL}/#organization` },

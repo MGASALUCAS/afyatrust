@@ -16,7 +16,7 @@ export type Founder = { name: string; img: string };
 
 export const founders: Founder[] = [
   { name: "Johnson Thomson Daniel", img: "/media/johnson-ceo.jpeg" },
-  { name: "Hamidu Hafidhi Hassani", img: "/media/hamidu-marketing.jpeg" },
+  { name: "Hamidu Hafidhihi Hassani", img: "/media/hamidu-marketing.jpeg" },
 ];
 
 // Plan names and prices are not translated; taglines live in plans.taglines
